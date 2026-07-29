@@ -106,52 +106,74 @@ function App() {
             </div>
           </nav>
 
-          {/* Mobile Menu Overlay */}
+          {/* Premium Mobile Menu Overlay */}
           <AnimatePresence>
             {isMobileMenuOpen && (
               <motion.div 
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                className="fixed top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm bg-card/95 backdrop-blur-3xl border border-white/10 rounded-3xl p-6 z-40 md:hidden shadow-2xl flex flex-col gap-6 text-center"
+                initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+                animate={{ opacity: 1, backdropFilter: "blur(24px)" }}
+                exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 z-40 bg-[#050511]/80 md:hidden flex flex-col items-center justify-center pt-24 pb-12 px-6"
               >
-                <Link 
-                  to="/#about" 
-                  className="text-lg font-medium text-gray-200 hover:text-white transition-colors"
-                  onClick={(e) => {
-                    if (window.location.pathname === '/') {
-                      e.preventDefault();
-                      handleMobileScroll('about');
-                    } else {
-                      setIsMobileMenuOpen(false);
-                    }
-                  }}
-                >
-                  About
-                </Link>
-                <div className="h-px w-full bg-white/10"></div>
-                <Link 
-                  to="/projects" 
-                  className="text-lg font-medium text-gray-200 hover:text-white transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Projects
-                </Link>
-                <div className="h-px w-full bg-white/10"></div>
-                <Link 
-                  to="/#contact" 
-                  className="text-lg font-medium text-primary hover:text-white transition-colors"
-                  onClick={(e) => {
-                    if (window.location.pathname === '/') {
-                      e.preventDefault();
-                      handleMobileScroll('contact');
-                    } else {
-                      setIsMobileMenuOpen(false);
-                    }
-                  }}
-                >
-                  Connect
-                </Link>
+                <div className="flex flex-col items-center gap-10 w-full max-w-sm">
+                  <motion.div 
+                    initial={{ opacity: 0, y: 30 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ delay: 0.1, duration: 0.4 }}
+                  >
+                    <Link 
+                      to="/#about" 
+                      className="text-4xl font-bold text-gray-300 hover:text-white hover:tracking-widest transition-all duration-300"
+                      onClick={(e) => {
+                        if (window.location.pathname === '/') {
+                          e.preventDefault();
+                          handleMobileScroll('about');
+                        } else {
+                          setIsMobileMenuOpen(false);
+                        }
+                      }}
+                    >
+                      About
+                    </Link>
+                  </motion.div>
+                  
+                  <motion.div 
+                    initial={{ opacity: 0, y: 30 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ delay: 0.2, duration: 0.4 }}
+                  >
+                    <Link 
+                      to="/projects" 
+                      className="text-4xl font-bold text-gray-300 hover:text-white hover:tracking-widest transition-all duration-300"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Projects
+                    </Link>
+                  </motion.div>
+
+                  <motion.div 
+                    initial={{ opacity: 0, y: 30 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ delay: 0.3, duration: 0.4 }}
+                    className="mt-8"
+                  >
+                    <Link 
+                      to="/#contact" 
+                      className="px-10 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-bold text-2xl hover:shadow-[0_0_30px_rgba(147,51,234,0.5)] transition-all transform hover:scale-105 inline-block"
+                      onClick={(e) => {
+                        if (window.location.pathname === '/') {
+                          e.preventDefault();
+                          handleMobileScroll('contact');
+                        } else {
+                          setIsMobileMenuOpen(false);
+                        }
+                      }}
+                    >
+                      Connect
+                    </Link>
+                  </motion.div>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
