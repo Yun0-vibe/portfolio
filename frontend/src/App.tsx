@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CustomCursor from './components/CustomCursor';
+import PatchNotes from './components/PatchNotes';
 import Home from './pages/Home';
 import ProjectsPage from './pages/ProjectsPage';
 import Footer from './components/Footer';
@@ -60,6 +61,7 @@ function App() {
 
         <div className="relative z-10">
           <CustomCursor />
+          <PatchNotes />
           
           {/* Floating Pill Navigation */}
           <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-3xl z-50 bg-card/80 backdrop-blur-xl border border-white/10 py-3 px-6 md:px-8 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
