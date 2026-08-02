@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2, Sparkles, Wrench } from 'lucide-react';
+import { X, CheckCircle2, Terminal, Wrench, Globe, Cpu } from 'lucide-react';
 
 const PatchNotes = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -39,7 +39,7 @@ const PatchNotes = () => {
           
           <div className="flex items-center gap-3 mb-6">
             <div className="p-2 bg-primary/20 rounded-lg text-primary">
-              <Sparkles size={28} />
+              <Terminal size={28} />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white">Patch Update 1.0</h2>
@@ -56,7 +56,7 @@ const PatchNotes = () => {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="text-green-400 shrink-0 mt-0.5" size={20} />
+              <Cpu className="text-purple-400 shrink-0 mt-0.5" size={20} />
               <div>
                 <h3 className="text-white font-semibold">Mobile Navigation Overhaul</h3>
                 <p className="text-gray-400 text-sm">Upgraded to a premium full-screen immersive frosted glass overlay for mobile users.</p>
@@ -70,7 +70,7 @@ const PatchNotes = () => {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <Sparkles className="text-purple-400 shrink-0 mt-0.5" size={20} />
+              <Globe className="text-teal-400 shrink-0 mt-0.5" size={20} />
               <div>
                 <h3 className="text-white font-semibold">Advanced SEO & Open Graph</h3>
                 <p className="text-gray-400 text-sm">Injected sitemap.xml, robots.txt, and a custom high-res rendering of the geometric logo for Discord/Twitter link previews.</p>
