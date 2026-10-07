@@ -224,6 +224,18 @@ export type Note = { slug: string; title: string; date: string; minutes: number;
 
 export const NOTES: Note[] = [
   {
+    slug: 'vibe-coders-letter',
+    title: 'An open letter to people who laugh at vibe coders',
+    date: 'Oct 2026',
+    minutes: 3,
+    body: [
+      'They say I don\'t write code. Correct — I write outcomes. The code is just the exhaust.',
+      'A traditional dev spends three days configuring a build pipeline. I spend three minutes describing the app, then three days reviewing, testing, and hardening what the machine drafted. We both worked hard. Only one of us admits which part the machine did.',
+      'Every generation was told the next abstraction would end them: compilers, garbage collectors, Stack Overflow, and now prompts. The "lazy" programmer of 1990 is today\'s 10x engineer. They just call it leverage now.',
+      'Call it vibe coding. I call it directing. The credits still say my name when it breaks at 3am — and I\'m the one awake fixing it while the critics are asleep.',
+      'So to my friends: keep laughing. I\'ll keep shipping. We\'ll compare scoreboards — mine has 11 builds and 461 passing tests. What does yours have?',
+    ],
+  },  {
     slug: 'prompt-first',
     title: 'Prompt-first: how I ship faster without skipping quality',
     date: 'Jan 2026',

@@ -108,6 +108,10 @@ export function Hero() {
               <p className="text-stone-500">ceo, strenox-foundation</p>
               <p><span className="text-lime-400">$</span> <span className="text-stone-300">uptime --servers</span></p>
               <p className="text-stone-500">all nodes <span className="text-lime-300">operational</span></p>
+              <p><span className="text-lime-400">$</span> <span className="text-stone-300">cat critics.txt</span></p>
+              <p className="text-stone-500">"vibe coders know nothing" <span className="text-stone-600">— people who ship nothing</span></p>
+              <p><span className="text-lime-400">$</span> <span className="text-stone-300">./prove_them_wrong --production</span></p>
+              <p className="text-stone-500">✓ {PROJECTS.length} builds shipped · <span className="text-lime-300">461 tests passing</span></p>
               <p><span className="text-lime-400">$</span> <span className="text-stone-300"><Typewriter text="sleep? never-heard-of-it" delay={1400} /></span></p>
             </div>
           </div>
