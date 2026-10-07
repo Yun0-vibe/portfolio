@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Command, Moon, Sun, Search, ArrowUp, Copy, Check } from 'lucide-react';
+import { Command, Moon, Sun, Search, ArrowUp, ArrowUpRight, Copy, Check, Github, Mail, MessageCircle, Phone, MapPin } from 'lucide-react';
 import { useTheme } from '../theme';
 import { useKathmanduTime, useScrollProgress } from '../hooks';
 import { PROJECTS, CONTACTS } from '../data';
@@ -172,48 +172,92 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
 
 export function Footer() {
   const [copied, setCopied] = useState(false);
+  const time = useKathmanduTime();
+  const copyEmail = () => {
+    navigator.clipboard?.writeText(CONTACTS.email).catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1200);
+  };
+
+  const socials = [
+    { icon: <Github size={15} />, label: `GitHub — ${CONTACTS.github.label}`, href: CONTACTS.github.href },
+    { icon: <MessageCircle size={15} />, label: `Discord — ${CONTACTS.discord.label}`, href: CONTACTS.discord.href },
+    { icon: <Phone size={15} />, label: 'WhatsApp — chat', href: CONTACTS.whatsapp.href },
+    { icon: <Mail size={15} />, label: CONTACTS.email, href: `mailto:${CONTACTS.email}` },
+  ];
+
   return (
-    <footer className="border-t border-stone-900/10 dark:border-white/10">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-4">
-        <div className="md:col-span-2">
-          <p className="font-mono text-sm font-semibold">YUNO — developer & AI builder</p>
-          <p className="mt-2 max-w-sm text-sm leading-relaxed text-stone-500 dark:text-stone-400">
-            Game panels, Minecraft plugins, Discord bots and web platforms. Designed in Kathmandu, running everywhere.
-          </p>
-          <button
-            onClick={() => {
-              navigator.clipboard?.writeText(CONTACTS.email).catch(() => {});
-              setCopied(true);
-              setTimeout(() => setCopied(false), 1200);
-            }}
-            className="mt-4 flex items-center gap-2 rounded-full border border-stone-900/15 px-3 py-1.5 font-mono text-xs transition-colors hover:bg-stone-900/5 dark:border-white/15 dark:hover:bg-white/10"
-          >
-            {copied ? <Check size={13} className="text-lime-600" /> : <Copy size={13} />}
-            {copied ? 'copied!' : CONTACTS.email}
-          </button>
-        </div>
-        <div>
-          <p className="font-mono text-xs uppercase tracking-widest text-stone-400">Site</p>
-          <div className="mt-3 flex flex-col gap-2 text-sm">
-            <Link className="hover:underline" to="/">Home</Link>
-            <Link className="hover:underline" to="/projects">Work</Link>
-            <Link className="hover:underline" to="/notes">Notes</Link>
-            <Link className="hover:underline" to="/uses">Uses</Link>
+    <footer className="bg-stone-950 text-stone-200 dark:border-t dark:border-white/10 dark:bg-black">
+      <div className="mx-auto max-w-6xl px-4 pb-8 pt-14">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="font-display text-6xl italic leading-none tracking-tight text-white md:text-7xl">
+              Yuno<span className="text-lime-500">.</span>
+            </p>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-stone-400">
+              Developer & AI builder — game panels, Minecraft plugins, Discord bots and web platforms.
+              Designed in Kathmandu, running everywhere.
+            </p>
+          </div>
+          <div className="flex flex-col items-start gap-3">
+            <span className="flex items-center gap-1.5 rounded-full bg-lime-500/10 px-3 py-1.5 font-mono text-xs text-lime-400">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime-500" /> open for work
+            </span>
+            <Link
+              to="/"
+              onClick={() => setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 150)}
+              className="group inline-flex items-center gap-2 rounded-full bg-lime-600 px-6 py-3 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-lime-500"
+            >
+              Start a project
+              <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
         </div>
-        <div>
-          <p className="font-mono text-xs uppercase tracking-widest text-stone-400">Elsewhere</p>
-          <div className="mt-3 flex flex-col gap-2 text-sm">
-            <a className="hover:underline" href={CONTACTS.github.href} target="_blank" rel="noreferrer">GitHub — {CONTACTS.github.label}</a>
-            <a className="hover:underline" href={CONTACTS.discord.href} target="_blank" rel="noreferrer">Discord — {CONTACTS.discord.label}</a>
-            <a className="hover:underline" href={CONTACTS.whatsapp.href} target="_blank" rel="noreferrer">WhatsApp</a>
-            <a className="hover:underline" href={`mailto:${CONTACTS.email}`}>Email</a>
+
+        <div className="mt-10 grid gap-8 border-t border-white/10 pt-8 sm:grid-cols-2 md:grid-cols-4">
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-stone-500">Site</p>
+            <div className="mt-3 flex flex-col gap-2.5 text-sm">
+              {[
+                ['/', 'Home'],
+                ['/projects', 'Work'],
+                ['/notes', 'Notes'],
+                ['/uses', 'Uses'],
+              ].map(([to, label]) => (
+                <Link key={to} to={to} className="w-fit text-stone-300 transition-colors hover:text-lime-400">
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className="sm:col-span-2 md:col-span-2">
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-stone-500">Elsewhere</p>
+            <div className="mt-3 grid gap-2.5 text-sm sm:grid-cols-2">
+              {socials.map((s) => (
+                <a key={s.label} href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="flex w-fit items-center gap-2 text-stone-300 transition-colors hover:text-lime-400">
+                  <span className="text-stone-500">{s.icon}</span>
+                  {s.label}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-stone-500">Local time</p>
+            <p className="mt-3 flex items-center gap-2 font-mono text-sm text-stone-300">
+              <MapPin size={14} className="text-stone-500" /> KTM {time}
+            </p>
+            <button
+              onClick={copyEmail}
+              className="mt-3 flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 font-mono text-xs text-stone-300 transition-colors hover:border-lime-500/50 hover:text-white"
+            >
+              {copied ? <Check size={13} className="text-lime-400" /> : <Copy size={13} />}
+              {copied ? 'copied!' : CONTACTS.email}
+            </button>
           </div>
         </div>
-      </div>
-      <div className="border-t border-stone-900/10 py-4 dark:border-white/10">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 font-mono text-xs text-stone-400">
-          <span>© {new Date().getFullYear()} Yuno · v2.0 fresh revamp</span>
+
+        <div className="mt-10 flex items-center justify-between border-t border-white/10 pt-5 font-mono text-xs text-stone-500">
+          <span>© {new Date().getFullYear()} Yuno · v2.0 — built with React & Tailwind</span>
           <BackToTop />
         </div>
       </div>
