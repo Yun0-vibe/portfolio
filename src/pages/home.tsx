@@ -31,12 +31,12 @@ export function Hero() {
             <span className="rounded-full border border-white/10 px-3 py-1 text-stone-400">open for work</span>
           </div>
           <h1 className="anim-rise mt-6 text-5xl font-extrabold leading-[0.95] tracking-tighter text-white sm:text-6xl md:text-8xl" style={{ animationDelay: '90ms' }}>
-            Hi, I'm Yuno.
+            Hi, I'm Arjan.
             <br />
             I ship <span className="font-display glow-text font-normal italic text-lime-400">systems</span> that stay up.
           </h1>
           <p className="anim-rise mt-5 max-w-xl text-base leading-relaxed text-stone-400 md:text-lg" style={{ animationDelay: '180ms' }}>
-            17-year-old CEO running <strong className="text-white">StrenoxCloud Hosting</strong>,{' '}
+            Arjan Subedi (aka Yuno) — 17-year-old CEO running <strong className="text-white">StrenoxCloud Hosting</strong>,{' '}
             <strong className="text-white">StrenoxDevelopment</strong> and the upcoming{' '}
             <strong className="text-white">StrenoxMC</strong> — firewalls, plugins, panels, bots.
           </p>
@@ -105,7 +105,7 @@ export function Hero() {
             </div>
             <div className="space-y-1.5 pt-3">
               <p><span className="text-lime-400">$</span> <span className="text-stone-300">whoami</span></p>
-              <p className="text-stone-500">ceo, strenox-foundation</p>
+              <p className="text-stone-500">arjan subedi — ceo</p>
               <p><span className="text-lime-400">$</span> <span className="text-stone-300">uptime --servers</span></p>
               <p className="text-stone-500">all nodes <span className="text-lime-300">operational</span></p>
               <p><span className="text-lime-400">$</span> <span className="text-stone-300">cat critics.txt</span></p>
