@@ -4,7 +4,7 @@ export type Project = {
   tagline: string;
   description: string;
   stack: string[];
-  category: 'Web' | 'Game Panel' | 'Plugin' | 'Bot' | 'Platform' | 'Store';
+  category: 'Web' | 'Plugin' | 'Bot' | 'Store';
   status: 'Ongoing' | 'Finished';
   year: string;
   accent: string;
@@ -12,16 +12,40 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
-    slug: 'aerodactyl',
-    title: 'Aerodactyl',
-    tagline: 'Custom game server management panel',
+    slug: 'playertales',
+    title: 'PlayerTales',
+    tagline: 'Auto-generated player storybooks (Paper 1.20+)',
     description:
-      'Ongoing build: a full management panel for game servers with server controls, user roles, billing hooks and Docker-backed deploys. Designed to replace generic panels with something faster and game-specific.',
-    stack: ['PHP', 'React', 'Node.js', 'Docker'],
-    category: 'Game Panel',
-    status: 'Ongoing',
-    year: '2025 — now',
+      'Tracks 10+ player action types — joins, movement, chat, mining, kills, deaths, crafting — and turns them into readable storybooks with milestone GUIs. MySQL (HikariCP) + YAML storage, PlaceholderAPI expansion, LuckPerms/Vault hooks, Discord webhooks, and a full MockBukkit + JUnit test suite. By AeroVibeStudio.',
+    stack: ['Java', 'Paper API', 'MySQL', 'MockBukkit'],
+    category: 'Plugin',
+    status: 'Finished',
+    year: '2026',
     accent: '#65a30d',
+  },
+  {
+    slug: 'serverpulse',
+    title: 'ServerPulse',
+    tagline: 'Automated player engagement engine (Paper 1.20+)',
+    description:
+      'Monitors live server activity with snapshots and configurable triggers, then auto-launches re-engagement events when activity drops. Pulse dashboard + event-config GUIs, PlaceholderAPI expansion, Discord alerts, and MockBukkit integration tests. By AeroVibeStudio.',
+    stack: ['Java', 'Paper API', 'PlaceholderAPI', 'MockBukkit'],
+    category: 'Plugin',
+    status: 'Finished',
+    year: '2026',
+    accent: '#0d9488',
+  },
+  {
+    slug: 'battlepass-live',
+    title: 'BattlePass Live',
+    tagline: 'Seasons, tiers & quests battle pass (Paper 1.21)',
+    description:
+      'Full battle-pass system: seasons, free/premium tiers, quest engine, in-game admin editors for tiers/quests/seasons/messages, SQLite storage, Vault economy rewards, Geyser Bedrock forms, Discord integration and a developer API. Built with Gradle on Java 21 for StrenoxDevelopment.',
+    stack: ['Java', 'Paper API', 'Gradle', 'SQLite'],
+    category: 'Plugin',
+    status: 'Ongoing',
+    year: '2026',
+    accent: '#C2410C',
   },
   {
     slug: 'axemc-license',
@@ -82,18 +106,6 @@ export const PROJECTS: Project[] = [
     status: 'Finished',
     year: '2023',
     accent: '#5865F2',
-  },
-  {
-    slug: 'nvch-platform',
-    title: 'NVCH Team Platform',
-    tagline: 'Multilingual team & community platform',
-    description:
-      'Multilingual web platform for a team: news, rosters, applications and internal tools. PHP + MySQL with a Tailwind frontend.',
-    stack: ['PHP', 'Tailwind CSS', 'MySQL'],
-    category: 'Platform',
-    status: 'Finished',
-    year: '2023',
-    accent: '#0e7490',
   },
   {
     slug: 'minor-webs',
@@ -182,7 +194,7 @@ export const NOTES: Note[] = [
     minutes: 5,
     body: [
       'Game players notice downtime in seconds. That pressure taught me more than any tutorial: health checks, restarts, backups, and logs you actually read.',
-      'Aerodactyl exists because generic panels fought me. I wanted per-server controls, clear roles, and Docker underneath so a crash in one container never takes the node down.',
+      'I have run servers on Pterodactyl nodes long enough to learn what matters: per-server controls, clear roles, and Docker underneath so a crash in one container never takes the node down.',
       'If you host anything: pin your versions, back up the database separately from the files, and write the runbook before you need it at 2am.',
     ],
   },
