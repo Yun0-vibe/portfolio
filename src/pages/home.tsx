@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowDown, ArrowRight, Bot, Globe, Gamepad2, Sparkles } from 'lucide-react';
-import { PROJECTS, STACK_GROUPS, JOURNEY, SERVICES, NOTES, CONTACTS } from '../data';
+import { PROJECTS, STACK_GROUPS, JOURNEY, SERVICES, NOTES, CONTACTS, FOUNDATION } from '../data';
 import { Section } from '../components/section';
 import { Reveal, CountUp } from '../components/reveal';
 import { SelectedWork } from '../components/projects';
@@ -29,8 +29,8 @@ export function Hero() {
           I build <span className="font-display font-normal italic text-lime-700 dark:text-lime-400">software</span> that ships.
         </h1>
         <p className="anim-rise mt-5 max-w-2xl text-lg leading-relaxed text-stone-600 dark:text-stone-300" style={{ animationDelay: '180ms' }}>
-          17-year-old developer & AI prompter into multi-lingual builds — game panels, Minecraft plugins, Discord bots and
-          web platforms. Prompt-first, production-minded.
+          17-year-old <strong className="text-stone-900 dark:text-white">CEO of Strenox Foundation</strong> — shipping Minecraft
+          plugins, game infrastructure, and web platforms. Prompt-first, production-minded.
         </p>
         <div className="anim-rise mt-7 flex flex-wrap gap-3" style={{ animationDelay: '270ms' }}>
           <Link
@@ -84,6 +84,36 @@ export function HomePage({ onPick }: { onPick: (p: Project) => void }) {
           <SelectedWork onPick={onPick} />
         </Reveal>
       </Section>
+
+      <div className="border-y border-stone-900/10 bg-stone-950 text-stone-200 dark:border-white/10 dark:bg-black">
+        <Section
+          kicker="Strenox Foundation"
+          title={<>One foundation<span className="text-lime-500">, three missions.</span></>}
+          blurb="I'm the CEO. Everything I build now ships under Strenox — AeroVibe Studio is officially retired."
+        >
+          <div className="grid gap-4 md:grid-cols-3">
+            {FOUNDATION.map((f, i) => (
+              <Reveal key={f.name} delay={(i % 3) * 90}>
+              <div className="h-full rounded-2xl border border-white/10 bg-white/[0.04] p-5 transition-transform hover:-translate-y-1">
+                <span
+                  className={`rounded-full px-2.5 py-1 font-mono text-[11px] font-semibold ${
+                    f.status === 'Live'
+                      ? 'bg-lime-500/15 text-lime-400'
+                      : f.status === 'Active'
+                        ? 'bg-sky-500/15 text-sky-400'
+                        : 'border border-dashed border-amber-500/40 text-amber-400'
+                  }`}
+                >
+                  {f.status}
+                </span>
+                <h3 className="mt-3 text-lg font-bold text-white">{f.name}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-stone-400">{f.text}</p>
+              </div>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+      </div>
 
       <div className="border-y border-stone-900/10 bg-white/60 dark:border-white/10 dark:bg-white/[0.02]">
         <Section

@@ -190,7 +190,7 @@ export function Footer() {
               Yuno<span className="text-lime-500">.</span>
             </p>
             <p className="hidden max-w-xs text-xs leading-relaxed text-stone-400 sm:block">
-              Developer & AI builder — plugins, panels, bots and web.
+              CEO of Strenox Foundation — plugins, panels, bots and web.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2.5">

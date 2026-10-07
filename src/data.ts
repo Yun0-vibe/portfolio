@@ -4,7 +4,7 @@ export type Project = {
   tagline: string;
   description: string;
   stack: string[];
-  category: 'Web' | 'Plugin' | 'Bot' | 'Store';
+  category: 'Web' | 'Plugin' | 'Security' | 'Infra' | 'Bot' | 'Store';
   status: 'Ongoing' | 'Finished';
   year: string;
   accent: string;
@@ -12,11 +12,35 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: 'strenox-migration',
+    title: 'Strenox DDoS Migration',
+    tagline: 'XDP-based DDoS mitigation firewall (formerly AeroDDoS)',
+    description:
+      'Attaches to the network interface at the driver level and makes drop/pass decisions before the kernel allocates an SKB — targeting 10M+ pps on a single core. 16-stage XDP pipeline, multi-vector detection (SYN/UDP/ICMP/amplification), bubbletea TUI dashboard, Prometheus metrics, Discord/Slack alerts — plus a companion attack-simulation tester.',
+    stack: ['Go', 'eBPF/XDP', 'C', 'Prometheus'],
+    category: 'Security',
+    status: 'Ongoing',
+    year: '2026',
+    accent: '#dc2626',
+  },
+  {
+    slug: 'strenoxcloud',
+    title: 'StrenoxCloud',
+    tagline: 'Game-hosting cloud platform',
+    description:
+      'Custom hosting cloud built from scratch: React dashboard, FastAPI + PostgreSQL backend with 461 tests, Dockerized production compose, Nginx edge, and billing through a Paymenter extension. The flagship infra of Strenox Foundation.',
+    stack: ['React', 'FastAPI', 'PostgreSQL', 'Docker'],
+    category: 'Infra',
+    status: 'Ongoing',
+    year: '2026',
+    accent: '#2563eb',
+  },
+  {
     slug: 'playertales',
     title: 'PlayerTales',
     tagline: 'Auto-generated player storybooks (Paper 1.20+)',
     description:
-      'Tracks 10+ player action types — joins, movement, chat, mining, kills, deaths, crafting — and turns them into readable storybooks with milestone GUIs. MySQL (HikariCP) + YAML storage, PlaceholderAPI expansion, LuckPerms/Vault hooks, Discord webhooks, and a full MockBukkit + JUnit test suite. By AeroVibeStudio.',
+      'Tracks 10+ player action types — joins, movement, chat, mining, kills, deaths, crafting — and turns them into readable storybooks with milestone GUIs. MySQL (HikariCP) + YAML storage, PlaceholderAPI expansion, LuckPerms/Vault hooks, Discord webhooks, and a full MockBukkit + JUnit test suite. By StrenoxDevelopment.',
     stack: ['Java', 'Paper API', 'MySQL', 'MockBukkit'],
     category: 'Plugin',
     status: 'Finished',
@@ -28,7 +52,7 @@ export const PROJECTS: Project[] = [
     title: 'ServerPulse',
     tagline: 'Automated player engagement engine (Paper 1.20+)',
     description:
-      'Monitors live server activity with snapshots and configurable triggers, then auto-launches re-engagement events when activity drops. Pulse dashboard + event-config GUIs, PlaceholderAPI expansion, Discord alerts, and MockBukkit integration tests. By AeroVibeStudio.',
+      'Monitors live server activity with snapshots and configurable triggers, then auto-launches re-engagement events when activity drops. Pulse dashboard + event-config GUIs, PlaceholderAPI expansion, Discord alerts, and MockBukkit integration tests. By StrenoxDevelopment.',
     stack: ['Java', 'Paper API', 'PlaceholderAPI', 'MockBukkit'],
     category: 'Plugin',
     status: 'Finished',
@@ -131,8 +155,8 @@ export const STACK_GROUPS: { title: string; items: string[] }[] = [
 export const JOURNEY = [
   {
     period: 'Now',
-    title: 'Architect & Prompter',
-    text: 'Shipping full products with AI-assisted workflows: panels, bots, stores and plugins. Focus on systems that stay up, not demos that break.',
+    title: 'Founder & CEO — Strenox Foundation',
+    text: 'Running the parent company behind StrenoxCloud Hosting, StrenoxDevelopment Studio and the upcoming StrenoxMC server. AeroVibe Studio officially shut down — everything merged into Strenox.',
   },
   {
     period: 'A year ago',
@@ -143,6 +167,24 @@ export const JOURNEY = [
     period: 'The beginning',
     title: 'Hello World',
     text: 'Started with QBasic and plain HTML/CSS/JS. Fell in love with making things that other people actually use.',
+  },
+];
+
+export const FOUNDATION = [
+  {
+    name: 'StrenoxCloud Hosting',
+    status: 'Live',
+    text: 'Game-server hosting cloud — custom panel, billing and nodes, built from scratch.',
+  },
+  {
+    name: 'StrenoxDevelopment',
+    status: 'Active',
+    text: 'Dev studio — Minecraft plugins, panels, firewalls and license infrastructure.',
+  },
+  {
+    name: 'StrenoxMC',
+    status: 'Upcoming',
+    text: 'Community Minecraft server — currently in the works. Watch this space.',
   },
 ];
 

@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, Search } from 'lucide-react';
 import { PROJECTS, type Project } from '../data';
 
-const FILTERS = ['All', 'Web', 'Plugin', 'Bot', 'Store'] as const;
+const FILTERS = ['All', 'Web', 'Plugin', 'Security', 'Infra', 'Bot', 'Store'] as const;
 
 export function ProjectFilters({ onPick }: { onPick: (p: Project) => void }) {
   const [params, setParams] = useSearchParams();
