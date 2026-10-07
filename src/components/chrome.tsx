@@ -19,7 +19,7 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
   ];
 
   return (
-    <header className="sticky top-0 z-40 border-b border-stone-900/10 bg-paper/90 backdrop-blur dark:border-white/10 dark:bg-[#0C0A09]/90">
+    <header className="anim-fade sticky top-0 z-40 border-b border-stone-900/10 bg-paper/90 backdrop-blur dark:border-white/10 dark:bg-[#0C0A09]/90">
       <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4">
         <Link to="/" className="flex items-center gap-2 font-mono text-sm font-semibold tracking-tight">
           <span className="inline-block h-2.5 w-2.5 rounded-full bg-lime-600" />
@@ -135,7 +135,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/40 p-4 pt-24" onClick={onClose}>
       <div
-        className="w-full max-w-lg overflow-hidden rounded-2xl border border-stone-900/10 bg-white shadow-2xl dark:border-white/10 dark:bg-stone-900"
+        className="anim-pop w-full max-w-lg overflow-hidden rounded-2xl border border-stone-900/10 bg-white shadow-2xl dark:border-white/10 dark:bg-stone-900"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 border-b border-stone-900/10 px-4 py-3 dark:border-white/10">

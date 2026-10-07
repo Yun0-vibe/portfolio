@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Clock } from 'lucide-react';
 import { NOTES } from '../data';
 import { Section } from '../components/section';
+import { Reveal } from '../components/reveal';
 
 export function NotesPage() {
   const [open, setOpen] = useState<string | null>(() => window.location.hash.replace('#', '') || null);
@@ -13,7 +14,8 @@ export function NotesPage() {
       <Section kicker="Notes" title={<>Notes & lessons<span className="text-lime-700">.</span></>} blurb="No newsletter popups. Just things that worked.">
         {!active ? (
           <div className="space-y-3">
-            {NOTES.map((n) => (
+            {NOTES.map((n, i) => (
+              <Reveal key={n.slug} delay={i * 70}>
               <button
                 key={n.slug}
                 onClick={() => {
@@ -30,6 +32,7 @@ export function NotesPage() {
                 </div>
                 <span className="font-mono text-xs text-stone-400">read →</span>
               </button>
+              </Reveal>
             ))}
           </div>
         ) : (

@@ -148,7 +148,7 @@ export function ProjectModal({ p, onClose }: { p: Project | null; onClose: () =>
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-0 sm:items-center sm:p-6" onClick={onClose}>
       <div
-        className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl border border-stone-900/10 bg-paper p-6 sm:rounded-3xl sm:p-8 dark:border-white/10 dark:bg-stone-900"
+        className="anim-pop max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl border border-stone-900/10 bg-paper p-6 sm:rounded-3xl sm:p-8 dark:border-white/10 dark:bg-stone-900"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2">

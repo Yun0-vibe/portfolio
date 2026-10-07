@@ -20,6 +20,7 @@ function ScrollToTop() {
 function Shell() {
   const [palette, setPalette] = useState(false);
   const [active, setActive] = useState<Project | null>(null);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const btn = document.createElement('button');
@@ -36,6 +37,7 @@ function Shell() {
     <div className="min-h-screen">
       <Navbar onPalette={() => setPalette(true)} />
       <ScrollToTop />
+      <div key={pathname} className="anim-page">
       <Routes>
         <Route path="/" element={<HomePage onPick={setActive} />} />
         <Route path="/projects" element={<ProjectsPage />} />
@@ -43,6 +45,7 @@ function Shell() {
         <Route path="/uses" element={<UsesPage />} />
         <Route path="*" element={<HomePage onPick={setActive} />} />
       </Routes>
+      </div>
       <Footer />
       <span id="palette-slot" />
       <CommandPalette open={palette} onClose={() => setPalette(false)} />
