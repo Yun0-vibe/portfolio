@@ -170,9 +170,10 @@ export function SelectedWork({ onPick }: { onPick: (p: Project) => void }) {
 export function ProjectModal({ p, onClose }: { p: Project | null; onClose: () => void }) {
   if (!p) return null;
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-0 backdrop-blur-sm sm:items-center sm:p-6" onClick={onClose}>
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-sm" onClick={onClose}>
+      <div className="flex min-h-full items-center justify-center p-4 sm:p-6">
       <div
-        className="anim-pop max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl border border-white/10 bg-stone-950 p-6 shadow-[0_0_80px_-16px_rgba(168,85,247,0.3)] sm:rounded-3xl sm:p-8"
+        className="anim-pop max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-white/10 bg-stone-950 p-6 shadow-[0_0_80px_-16px_rgba(168,85,247,0.35)] sm:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2">
@@ -212,6 +213,7 @@ export function ProjectModal({ p, onClose }: { p: Project | null; onClose: () =>
             </a>
           </span>
         </div>
+      </div>
       </div>
     </div>
   );
