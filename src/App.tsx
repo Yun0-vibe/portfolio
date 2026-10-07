@@ -1,7 +1,7 @@
-import { useEffect, useState, lazy, Suspense } from 'react';
+import { useEffect, useState, lazy, Suspense, useCallback } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { ThemeProvider } from './theme';
 import { Navbar, CommandPalette, Footer } from './components/chrome';
+import { BootLoader } from './components/loader';
 import { ProjectModal } from './components/projects';
 import { HomePage } from './pages/home';
 import type { Project } from './data';
@@ -21,11 +21,11 @@ function ScrollToTop() {
 function PageLoader() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-20">
-      <div className="h-8 w-48 animate-pulse rounded-lg bg-stone-900/10 dark:bg-white/10" />
-      <div className="mt-4 h-4 w-full max-w-md animate-pulse rounded bg-stone-900/10 dark:bg-white/10" />
+      <div className="h-8 w-48 animate-pulse rounded-lg bg-white/10" />
+      <div className="mt-4 h-4 w-full max-w-md animate-pulse rounded bg-white/10" />
       <div className="mt-6 grid gap-4 md:grid-cols-3">
         {[0, 1, 2].map((i) => (
-          <div key={i} className="h-48 animate-pulse rounded-2xl bg-stone-900/10 dark:bg-white/10" />
+          <div key={i} className="h-48 animate-pulse rounded-2xl bg-white/10" />
         ))}
       </div>
     </div>
@@ -35,6 +35,11 @@ function PageLoader() {
 function Shell() {
   const [palette, setPalette] = useState(false);
   const [active, setActive] = useState<Project | null>(null);
+  const [boot, setBoot] = useState(() => !sessionStorage.getItem('yuno-boot'));
+  const finishBoot = useCallback(() => {
+    sessionStorage.setItem('yuno-boot', '1');
+    setBoot(false);
+  }, []);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -50,6 +55,7 @@ function Shell() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      {boot && <BootLoader done={finishBoot} />}
       <Navbar onPalette={() => setPalette(true)} />
       <ScrollToTop />
       <div key={pathname} className="anim-page flex-1">
@@ -73,10 +79,8 @@ function Shell() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <BrowserRouter>
-        <Shell />
-      </BrowserRouter>
-    </ThemeProvider>
+    <BrowserRouter>
+      <Shell />
+    </BrowserRouter>
   );
 }

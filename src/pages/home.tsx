@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon, BotIcon, GlobeIcon, GamepadIcon, SparklesIcon, CpuIcon } from '../components/icons';
 import { PROJECTS, STACK_GROUPS, JOURNEY, SERVICES, NOTES, CONTACTS, FOUNDATION } from '../data';
 import { Section } from '../components/section';
-import { Reveal, CountUp } from '../components/reveal';
+import { Reveal, CountUp, Typewriter } from '../components/reveal';
 import { SelectedWork } from '../components/projects';
 import { ContactForm, Guestbook } from '../components/forms';
 import type { Project } from '../data';
@@ -88,6 +88,8 @@ export function Hero() {
             <img
               src="/avatar.png"
               alt="Yuno — Strenox Foundation"
+              fetchPriority="high"
+              decoding="async"
               className="relative h-52 w-52 rounded-[2rem] border border-lime-500/40 object-cover sm:h-64 sm:w-64"
             />
             <div className="absolute -bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full border border-white/10 bg-black/80 px-3 py-1.5 font-mono text-[11px] text-lime-300 backdrop-blur">
@@ -106,7 +108,7 @@ export function Hero() {
               <p className="text-stone-500">ceo, strenox-foundation</p>
               <p><span className="text-lime-400">$</span> <span className="text-stone-300">uptime --servers</span></p>
               <p className="text-stone-500">all nodes <span className="text-lime-300">operational</span></p>
-              <p><span className="text-lime-400">$</span> <span className="caret text-stone-300">sleep? never-heard-of-it</span></p>
+              <p><span className="text-lime-400">$</span> <span className="text-stone-300"><Typewriter text="sleep? never-heard-of-it" delay={1400} /></span></p>
             </div>
           </div>
         </div>

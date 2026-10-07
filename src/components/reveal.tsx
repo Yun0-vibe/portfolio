@@ -33,8 +33,7 @@ export function Reveal({ children, delay = 0, className = '' }: { children: Reac
   );
 }
 
-export function CountUp({ to, suffix = '' }: { to: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
+export function CountUp({ to, suffix = '' }: { to: number; suffix?: string }) {  const ref = useRef<HTMLSpanElement>(null);
   const [val, setVal] = useState(0);
 
   useEffect(() => {
@@ -72,6 +71,37 @@ export function CountUp({ to, suffix = '' }: { to: number; suffix?: string }) {
     <span ref={ref}>
       {val}
       {suffix}
+    </span>
+  );
+}
+
+export function Typewriter({ text, delay = 900, speed = 45 }: { text: string; delay?: number; speed?: number }) {
+  const [n, setN] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setN(text.length);
+      return;
+    }
+    let i = 0;
+    let interval: ReturnType<typeof setInterval> | undefined;
+    const start = setTimeout(() => {
+      interval = setInterval(() => {
+        i += 1;
+        setN(i);
+        if (i >= text.length && interval) clearInterval(interval);
+      }, speed);
+    }, delay);
+    return () => {
+      clearTimeout(start);
+      if (interval) clearInterval(interval);
+    };
+  }, [text, delay, speed]);
+
+  return (
+    <span>
+      {text.slice(0, n)}
+      <span className="caret" />
     </span>
   );
 }
