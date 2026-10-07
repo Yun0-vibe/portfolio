@@ -8,6 +8,7 @@ export type Project = {
   status: 'Ongoing' | 'Finished';
   year: string;
   accent: string;
+  links?: { label: string; href: string }[];
 };
 
 export const PROJECTS: Project[] = [
@@ -34,6 +35,10 @@ export const PROJECTS: Project[] = [
     status: 'Ongoing',
     year: '2026',
     accent: '#2563eb',
+    links: [
+      { label: 'strenoxcloud.xyz', href: 'https://www.strenoxcloud.xyz' },
+      { label: 'discord', href: 'https://dsc.gg/strenoxcloud' },
+    ],
   },
   {
     slug: 'playertales',
@@ -155,7 +160,7 @@ export const STACK_GROUPS: { title: string; items: string[] }[] = [
 export const JOURNEY = [
   {
     period: 'Now',
-    title: 'Founder & CEO — Strenox Foundation',
+    title: 'CEO — Strenox Foundation',
     text: 'Running the parent company behind StrenoxCloud Hosting, StrenoxDevelopment Studio and the upcoming StrenoxMC server. AeroVibe Studio officially shut down — everything merged into Strenox.',
   },
   {

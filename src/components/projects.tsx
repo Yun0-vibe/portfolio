@@ -197,13 +197,20 @@ export function ProjectModal({ p, onClose }: { p: Project | null; onClose: () =>
             ))}
           </div>
         </div>
-        <div className="card mt-6 flex items-center justify-between rounded-2xl p-4">
+        <div className="card mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl p-4">
           <span className="font-mono text-sm text-stone-400">
             status: <strong className="text-lime-300">{p.status}</strong>
           </span>
-          <a href={`mailto:contact@vibeyuno.me?subject=${encodeURIComponent(`Question about ${p.title}`)}`} className="font-mono text-sm font-bold text-white underline decoration-lime-500 underline-offset-4">
-            ask_about_this.build
-          </a>
+          <span className="flex flex-wrap items-center gap-3">
+            {p.links?.map((l) => (
+              <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="font-mono text-sm font-bold text-white underline decoration-lime-500 underline-offset-4">
+                {l.label} ↗
+              </a>
+            ))}
+            <a href={`mailto:contact@vibeyuno.me?subject=${encodeURIComponent(`Question about ${p.title}`)}`} className="font-mono text-sm font-bold text-white underline decoration-lime-500 underline-offset-4">
+              ask_about_this.build
+            </a>
+          </span>
         </div>
       </div>
     </div>

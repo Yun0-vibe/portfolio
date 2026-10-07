@@ -36,7 +36,7 @@ export function Hero() {
             I ship <span className="font-display glow-text font-normal italic text-lime-400">systems</span> that stay up.
           </h1>
           <p className="anim-rise mt-5 max-w-xl text-base leading-relaxed text-stone-400 md:text-lg" style={{ animationDelay: '180ms' }}>
-            17-year-old founder running <strong className="text-white">StrenoxCloud Hosting</strong>,{' '}
+            17-year-old CEO running <strong className="text-white">StrenoxCloud Hosting</strong>,{' '}
             <strong className="text-white">StrenoxDevelopment</strong> and the upcoming{' '}
             <strong className="text-white">StrenoxMC</strong> — firewalls, plugins, panels, bots.
           </p>
