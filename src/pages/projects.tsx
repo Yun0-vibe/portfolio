@@ -10,7 +10,7 @@ export function ProjectsPage() {
     <main className="pt-24">
       <Section
         kicker="Work archive"
-        title={<>All projects<span className="text-lime-700">.</span></>}
+        title={<>All projects<span className="text-purple-700">.</span></>}
         blurb="Every build in one place. Search by name or stack, filter by category and status, open any card for the full story."
       >
         <Reveal>

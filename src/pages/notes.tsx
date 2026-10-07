@@ -11,7 +11,7 @@ export function NotesPage() {
 
   return (
     <main className="pt-24">
-      <Section kicker="notes" title={<>Field logs<span className="text-lime-400">.</span></>} blurb="No newsletter popups. Just things that worked.">
+      <Section kicker="notes" title={<>Field logs<span className="text-purple-400">.</span></>} blurb="No newsletter popups. Just things that worked.">
         {!active ? (
           <div className="space-y-3">
             {NOTES.map((n, i) => (
@@ -29,7 +29,7 @@ export function NotesPage() {
                   </p>
                   <h3 className="mt-1 text-lg font-bold text-white">{n.title}</h3>
                 </div>
-                <span className="font-mono text-xs text-lime-400">read →</span>
+                <span className="font-mono text-xs text-purple-400">read →</span>
               </button>
               </Reveal>
             ))}
@@ -41,7 +41,7 @@ export function NotesPage() {
                 setOpen(null);
                 window.location.hash = '';
               }}
-              className="flex items-center gap-1 font-mono text-xs text-stone-500 transition-colors hover:text-lime-300"
+              className="flex items-center gap-1 font-mono text-xs text-stone-500 transition-colors hover:text-purple-300"
             >
               <ArrowLeftIcon size={13} /> all notes
             </button>
@@ -55,7 +55,7 @@ export function NotesPage() {
               ))}
             </div>
             <div className="card mt-8 rounded-2xl p-5 font-mono text-sm text-stone-400">
-              enjoyed this? <Link to="/#contact" className="font-bold text-lime-300 underline underline-offset-4">tell me what you're building</Link>
+              enjoyed this? <Link to="/#contact" className="font-bold text-purple-300 underline underline-offset-4">tell me what you're building</Link>
             </div>
           </article>
         )}

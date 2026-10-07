@@ -48,9 +48,9 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
             className="flex items-center gap-2.5"
             aria-label="Back to landing"
           >
-            <img src="/avatar.png" alt="Yuno" className="h-8 w-8 rounded-full border border-lime-500/40" />
+            <img src="/avatar.png" alt="Yuno" className="h-8 w-8 rounded-full border border-purple-500/40" />
             <span className="font-mono text-sm font-bold tracking-tight text-white">
-              YUNO<span className="text-lime-400">_</span>
+              YUNO<span className="text-purple-400">_</span>
             </span>
           </button>
           <nav className="ml-2 hidden items-center gap-1 md:flex">
@@ -59,7 +59,7 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
                 key={l.to}
                 to={l.to}
                 className={`rounded-lg px-3 py-1.5 font-mono text-[13px] transition-colors ${
-                  loc.pathname === l.to ? 'bg-lime-500/15 text-lime-300' : 'text-stone-400 hover:bg-white/5 hover:text-white'
+                  loc.pathname === l.to ? 'bg-purple-600/15 text-purple-300' : 'text-stone-400 hover:bg-white/5 hover:text-white'
                 }`}
               >
                 {l.label}
@@ -67,8 +67,8 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
             ))}
           </nav>
           <div className="ml-auto flex items-center gap-2">
-            <span className="hidden items-center gap-1.5 rounded-full border border-lime-500/25 bg-lime-500/10 px-2.5 py-1 font-mono text-[11px] text-lime-300 lg:flex">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime-400" /> open for work
+            <span className="hidden items-center gap-1.5 rounded-full border border-purple-500/25 bg-purple-600/10 px-2.5 py-1 font-mono text-[11px] text-purple-300 lg:flex">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-purple-400" /> open for work
             </span>
             <button
               onClick={onPalette}
@@ -79,7 +79,7 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
             <Link
               to="/"
               onClick={() => setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 150)}
-              className="hidden rounded-lg bg-lime-500 px-4 py-1.5 text-sm font-bold text-black transition-all hover:-translate-y-0.5 hover:bg-lime-400 sm:block"
+              className="hidden rounded-lg bg-purple-600 px-4 py-1.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-purple-500 sm:block"
             >
               Hire me
             </Link>
@@ -92,7 +92,7 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
             </button>
           </div>
           <div className="absolute inset-x-4 bottom-0 h-px overflow-hidden rounded-full">
-            <div className="h-full bg-lime-500 shadow-[0_0_12px_rgba(132,204,22,0.9)] transition-[width]" style={{ width: `${progress * 100}%` }} />
+            <div className="h-full bg-purple-600 shadow-[0_0_12px_rgba(168,85,247,0.9)] transition-[width]" style={{ width: `${progress * 100}%` }} />
           </div>
         </header>
       </div>
@@ -105,7 +105,7 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
                 key={l.to}
                 to={l.to}
                 className={`anim-rise flex items-center justify-between rounded-xl px-4 py-3.5 font-mono text-lg ${
-                  loc.pathname === l.to ? 'bg-lime-500/15 text-lime-300' : 'text-stone-300'
+                  loc.pathname === l.to ? 'bg-purple-600/15 text-purple-300' : 'text-stone-300'
                 }`}
                 style={{ animationDelay: `${i * 60}ms` }}
               >
@@ -184,11 +184,11 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/70 p-4 pt-24 backdrop-blur-sm" onClick={onClose}>
       <div
-        className="anim-pop w-full max-w-lg overflow-hidden rounded-2xl border border-white/10 bg-stone-950 shadow-[0_0_60px_-12px_rgba(132,204,22,0.3)]"
+        className="anim-pop w-full max-w-lg overflow-hidden rounded-2xl border border-white/10 bg-stone-950 shadow-[0_0_60px_-12px_rgba(168,85,247,0.3)]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-          <CommandIcon size={15} className="text-lime-400" />
+          <CommandIcon size={15} className="text-purple-400" />
           <input
             autoFocus
             value={q}
@@ -196,7 +196,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
             placeholder="Type a page, project, or action…"
             className="w-full bg-transparent font-mono text-sm text-white outline-none placeholder:text-stone-600"
           />
-          {copied && <CheckIcon size={14} className="text-lime-400" />}
+          {copied && <CheckIcon size={14} className="text-purple-400" />}
         </div>
         <div className="max-h-72 overflow-y-auto p-2">
           {results.length === 0 && <p className="px-3 py-6 text-center font-mono text-sm text-stone-500">No matches. Try "projects".</p>}
@@ -207,7 +207,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
                 r.run();
                 onClose();
               }}
-              className="flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-colors hover:bg-lime-500/10"
+              className="flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-colors hover:bg-purple-600/10"
             >
               <span className="font-medium text-stone-200">{r.label}</span>
               <span className="truncate font-mono text-xs text-stone-500">{r.hint}</span>
@@ -239,22 +239,22 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 pb-6 pt-10">
         <div className="flex flex-wrap items-center justify-between gap-5">
           <div className="flex items-center gap-4">
-            <img src="/avatar.png" alt="Yuno" className="h-12 w-12 rounded-2xl border border-lime-500/30" />
+            <img src="/avatar.png" alt="Yuno" className="h-12 w-12 rounded-2xl border border-purple-500/30" />
             <div>
               <p className="font-mono text-sm font-bold text-white">
-                YUNO<span className="text-lime-400">_</span>
+                YUNO<span className="text-purple-400">_</span>
               </p>
               <p className="mt-0.5 text-xs text-stone-500">CEO of Strenox Foundation</p>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2.5">
-            <span className="flex items-center gap-1.5 rounded-full border border-lime-500/25 bg-lime-500/10 px-3 py-1.5 font-mono text-xs text-lime-300">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime-400" /> open for work
+            <span className="flex items-center gap-1.5 rounded-full border border-purple-500/25 bg-purple-600/10 px-3 py-1.5 font-mono text-xs text-purple-300">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-purple-400" /> open for work
             </span>
             <Link
               to="/"
               onClick={() => setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 150)}
-              className="group inline-flex items-center gap-1.5 rounded-xl bg-lime-500 px-5 py-2 text-sm font-bold text-black transition-all hover:-translate-y-0.5 hover:bg-lime-400"
+              className="group inline-flex items-center gap-1.5 rounded-xl bg-purple-600 px-5 py-2 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-purple-500"
             >
               Start a project
               <ArrowUpRightIcon size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -272,7 +272,7 @@ export function Footer() {
                 ['/notes', 'Notes'],
                 ['/uses', 'Uses'],
               ].map(([to, label]) => (
-                <Link key={to} to={to} className="text-stone-400 transition-colors hover:text-lime-300">
+                <Link key={to} to={to} className="text-stone-400 transition-colors hover:text-purple-300">
                   {label}
                 </Link>
               ))}
@@ -282,7 +282,7 @@ export function Footer() {
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-stone-600">Elsewhere</p>
             <div className="mt-2.5 flex flex-wrap gap-x-4 gap-y-2 font-mono text-sm">
               {socials.map((s) => (
-                <a key={s.short} href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="flex items-center gap-1.5 text-stone-400 transition-colors hover:text-lime-300">
+                <a key={s.short} href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="flex items-center gap-1.5 text-stone-400 transition-colors hover:text-purple-300">
                   <span className="text-stone-600">{s.icon}</span>
                   {s.short}
                 </a>
@@ -293,9 +293,9 @@ export function Footer() {
             <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-stone-600">Contact</p>
             <button
               onClick={copyEmail}
-              className="mt-2.5 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 font-mono text-xs text-stone-300 transition-colors hover:border-lime-500/50 hover:text-white"
+              className="mt-2.5 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 font-mono text-xs text-stone-300 transition-colors hover:border-purple-500/50 hover:text-white"
             >
-              {copied ? <CheckIcon size={13} className="text-lime-400" /> : <CopyIcon size={13} />}
+              {copied ? <CheckIcon size={13} className="text-purple-400" /> : <CopyIcon size={13} />}
               {copied ? 'copied!' : CONTACTS.email}
             </button>
           </div>
@@ -312,7 +312,7 @@ export function Footer() {
 
 function BackToTop() {
   return (
-    <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-1 transition-colors hover:text-lime-300">
+    <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-1 transition-colors hover:text-purple-300">
       <ArrowUpIcon size={13} /> top
     </button>
   );

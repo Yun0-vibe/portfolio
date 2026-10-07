@@ -32,12 +32,12 @@ export function ContactForm() {
   }
 
   const input =
-    'w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 font-mono text-sm text-white outline-none transition-colors placeholder:text-stone-600 focus:border-lime-500/60';
+    'w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 font-mono text-sm text-white outline-none transition-colors placeholder:text-stone-600 focus:border-purple-500/60';
 
   return (
     <form onSubmit={submit} className="card rounded-3xl p-6">
       <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-stone-500">
-        <TerminalIcon size={13} className="text-lime-400" /> new_transmission
+        <TerminalIcon size={13} className="text-purple-400" /> new_transmission
       </p>
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <input className={input} placeholder="your_name" value={name} onChange={(e) => setName(e.target.value)} required maxLength={80} />
@@ -53,12 +53,12 @@ export function ContactForm() {
       />
       <button
         disabled={state === 'sending'}
-        className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-lime-500 px-5 py-3 font-mono text-sm font-bold text-black transition-all hover:bg-lime-400 disabled:opacity-50"
+        className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-purple-600 px-5 py-3 font-mono text-sm font-bold text-white transition-all hover:bg-purple-500 disabled:opacity-50"
       >
         <SendIcon size={15} /> {state === 'sending' ? 'transmitting…' : './send_message'}
       </button>
       {state === 'done' && (
-        <p className="mt-3 flex items-center gap-2 font-mono text-sm text-lime-300">
+        <p className="mt-3 flex items-center gap-2 font-mono text-sm text-purple-300">
           <CheckCircleIcon size={15} /> {msg}
         </p>
       )}
@@ -98,7 +98,7 @@ export function Guestbook() {
   return (
     <div className="card rounded-3xl p-6">
       <h3 className="flex items-center gap-2 font-mono text-sm font-bold text-white">
-        <MessagePlusIcon size={16} className="text-lime-400" /> guestbook.log
+        <MessagePlusIcon size={16} className="text-purple-400" /> guestbook.log
       </h3>
       <p className="mt-1 font-mono text-xs text-stone-500">say hi — stored in your browser, no account needed.</p>
       <form onSubmit={add} className="mt-4 flex flex-col gap-2 sm:flex-row">
@@ -116,13 +116,13 @@ export function Guestbook() {
           className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 font-mono text-sm text-white outline-none placeholder:text-stone-600"
           maxLength={280}
         />
-        <button className="rounded-xl bg-lime-500 px-4 py-2 font-mono text-sm font-bold text-black transition-colors hover:bg-lime-400">sign</button>
+        <button className="rounded-xl bg-purple-600 px-4 py-2 font-mono text-sm font-bold text-white transition-colors hover:bg-purple-500">sign</button>
       </form>
       <div className="mt-4 space-y-2">
         {entries.length === 0 && <p className="font-mono text-xs text-stone-600">-- empty log. be the first entry.</p>}
         {entries.map((g, i) => (
           <div key={i} className="rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2 font-mono text-[13px]">
-            <span className="font-bold text-lime-300">{g.name}</span> <span className="text-stone-400">· {g.text}</span>
+            <span className="font-bold text-purple-300">{g.name}</span> <span className="text-stone-400">· {g.text}</span>
           </div>
         ))}
       </div>

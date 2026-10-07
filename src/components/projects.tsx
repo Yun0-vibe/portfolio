@@ -41,7 +41,7 @@ export function ProjectFilters({ onPick }: { onPick: (p: Project) => void }) {
               key={s}
               onClick={() => setStatus(s)}
               className={`rounded-lg px-3 py-2 font-mono text-xs transition-colors ${
-                status === s ? 'bg-lime-500 font-bold text-black' : 'card text-stone-400 hover:text-white'
+                status === s ? 'bg-purple-600 font-bold text-white' : 'card text-stone-400 hover:text-white'
               }`}
             >
               {s}
@@ -59,7 +59,7 @@ export function ProjectFilters({ onPick }: { onPick: (p: Project) => void }) {
               setParams(f === 'All' ? {} : { cat: f });
             }}
             className={`whitespace-nowrap rounded-lg px-4 py-2 font-mono text-sm transition-colors ${
-              cat === f ? 'bg-lime-500 font-bold text-black' : 'card text-stone-400 hover:text-white'
+              cat === f ? 'bg-purple-600 font-bold text-white' : 'card text-stone-400 hover:text-white'
             }`}
           >
             {f}
@@ -68,7 +68,7 @@ export function ProjectFilters({ onPick }: { onPick: (p: Project) => void }) {
       </div>
 
       <p className="mt-3 font-mono text-xs text-stone-600">
-        <span className="text-lime-400">{list.length}</span>/{PROJECTS.length} builds loaded
+        <span className="text-purple-400">{list.length}</span>/{PROJECTS.length} builds loaded
       </p>
 
       <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -96,7 +96,7 @@ export function ProjectCard({ p, onOpen, dim, compact }: { p: Project; onOpen: (
         <span className="font-mono text-[11px] uppercase tracking-widest text-stone-500">{p.category}</span>
         <span
           className={`ml-auto rounded-full px-2 py-0.5 font-mono text-[11px] ${
-            p.status === 'Ongoing' ? 'bg-lime-500/15 text-lime-300' : 'bg-white/5 text-stone-500'
+            p.status === 'Ongoing' ? 'bg-purple-600/15 text-purple-300' : 'bg-white/5 text-stone-500'
           }`}
         >
           ● {p.status}
@@ -104,7 +104,7 @@ export function ProjectCard({ p, onOpen, dim, compact }: { p: Project; onOpen: (
       </div>
       <h3 className="mt-3 text-xl font-bold tracking-tight text-white">
         {p.title}
-        <ArrowUpRightIcon size={16} className="ml-1 inline text-stone-600 transition-all group-hover:translate-x-0.5 group-hover:text-lime-400" />
+        <ArrowUpRightIcon size={16} className="ml-1 inline text-stone-600 transition-all group-hover:translate-x-0.5 group-hover:text-purple-400" />
       </h3>
       <p className="mt-1 font-mono text-[13px] text-stone-500">{p.tagline}</p>
       {!compact && <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-stone-400">{p.description}</p>}
@@ -130,8 +130,8 @@ export function SelectedWork({ onPick }: { onPick: (p: Project) => void }) {
           <div className="grid-bg absolute inset-0" style={{ maskImage: 'none', WebkitMaskImage: 'none' }} />
           <div className="relative">
             <div className="flex items-center gap-2">
-              <TerminalIcon size={14} className="text-lime-400" />
-              <span className="font-mono text-xs uppercase tracking-widest text-lime-300">featured build</span>
+              <TerminalIcon size={14} className="text-purple-400" />
+              <span className="font-mono text-xs uppercase tracking-widest text-purple-300">featured build</span>
             </div>
             <h3 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-5xl">{hero.title}</h3>
             <p className="mt-2 font-mono text-sm text-stone-400">{hero.tagline}</p>
@@ -146,7 +146,7 @@ export function SelectedWork({ onPick }: { onPick: (p: Project) => void }) {
               </span>
             ))}
           </div>
-          <span className="mt-auto inline-flex items-center gap-2 pt-5 font-mono text-sm font-bold text-lime-300">
+          <span className="mt-auto inline-flex items-center gap-2 pt-5 font-mono text-sm font-bold text-purple-300">
             Open case file <ArrowRightIcon size={15} className="transition-transform group-hover:translate-x-1" />
           </span>
         </div>
@@ -159,7 +159,7 @@ export function SelectedWork({ onPick }: { onPick: (p: Project) => void }) {
       </div>
       <Link
         to="/projects"
-        className="mt-5 inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-2.5 font-mono text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:border-lime-500/50 hover:text-lime-300"
+        className="mt-5 inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-2.5 font-mono text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:border-purple-500/50 hover:text-purple-300"
       >
         ~/view-all <span className="text-stone-500">{PROJECTS.length} projects</span> <ArrowRightIcon size={15} />
       </Link>
@@ -172,7 +172,7 @@ export function ProjectModal({ p, onClose }: { p: Project | null; onClose: () =>
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-0 backdrop-blur-sm sm:items-center sm:p-6" onClick={onClose}>
       <div
-        className="anim-pop max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl border border-white/10 bg-stone-950 p-6 shadow-[0_0_80px_-16px_rgba(132,204,22,0.3)] sm:rounded-3xl sm:p-8"
+        className="anim-pop max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl border border-white/10 bg-stone-950 p-6 shadow-[0_0_80px_-16px_rgba(168,85,247,0.3)] sm:rounded-3xl sm:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2">
@@ -191,7 +191,7 @@ export function ProjectModal({ p, onClose }: { p: Project | null; onClose: () =>
           <p className="font-mono text-xs uppercase tracking-widest text-stone-500">Stack</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {p.stack.map((s) => (
-              <span key={s} className="rounded-lg bg-lime-500 px-3 py-1 font-mono text-xs font-bold text-black">
+              <span key={s} className="rounded-lg bg-purple-600 px-3 py-1 font-mono text-xs font-bold text-white">
                 {s}
               </span>
             ))}
@@ -199,15 +199,15 @@ export function ProjectModal({ p, onClose }: { p: Project | null; onClose: () =>
         </div>
         <div className="card mt-6 flex flex-wrap items-center justify-between gap-3 rounded-2xl p-4">
           <span className="font-mono text-sm text-stone-400">
-            status: <strong className="text-lime-300">{p.status}</strong>
+            status: <strong className="text-purple-300">{p.status}</strong>
           </span>
           <span className="flex flex-wrap items-center gap-3">
             {p.links?.map((l) => (
-              <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="font-mono text-sm font-bold text-white underline decoration-lime-500 underline-offset-4">
+              <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="font-mono text-sm font-bold text-white underline decoration-purple-500 underline-offset-4">
                 {l.label} ↗
               </a>
             ))}
-            <a href={`mailto:contact@vibeyuno.me?subject=${encodeURIComponent(`Question about ${p.title}`)}`} className="font-mono text-sm font-bold text-white underline decoration-lime-500 underline-offset-4">
+            <a href={`mailto:contact@vibeyuno.me?subject=${encodeURIComponent(`Question about ${p.title}`)}`} className="font-mono text-sm font-bold text-white underline decoration-purple-500 underline-offset-4">
               ask_about_this.build
             </a>
           </span>

@@ -5,7 +5,7 @@ import { STACK_GROUPS } from '../data';
 export function UsesPage() {
   return (
     <main className="pt-24">
-      <Section kicker="uses" title={<>Loadout<span className="text-lime-400">.</span></>} blurb="The setup behind the builds — and how this site itself is made.">
+      <Section kicker="uses" title={<>Loadout<span className="text-purple-400">.</span></>} blurb="The setup behind the builds — and how this site itself is made.">
         <div className="grid gap-4 md:grid-cols-2">
           <Reveal>
           <div className="card h-full rounded-2xl p-6">
@@ -39,7 +39,7 @@ export function UsesPage() {
               <p className="font-mono text-xs uppercase tracking-widest text-stone-500">{g.title}</p>
               <ul className="mt-2 space-y-1 font-mono text-sm text-stone-300">
                 {g.items.map((t) => (
-                  <li key={t}><span className="text-lime-500">›</span> {t}</li>
+                  <li key={t}><span className="text-purple-500">›</span> {t}</li>
                 ))}
               </ul>
             </div>
