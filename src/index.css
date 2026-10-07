@@ -185,7 +185,7 @@ body {
 }
 
 .boot-bar {
-  animation: boot-bar 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: boot-bar 1.1s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
 .reveal {
@@ -203,19 +203,19 @@ body {
 }
 
 .anim-rise {
-  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
 .anim-fade {
-  animation: fade-in 0.5s ease both;
+  animation: fade-in 0.5s ease backwards;
 }
 
 .anim-pop {
-  animation: pop-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: pop-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
 .anim-page {
-  animation: page-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: page-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
 .anim-float {
