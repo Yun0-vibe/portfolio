@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { SendIcon, CheckCircleIcon, AlertIcon, MessagePlusIcon, TerminalIcon } from './icons';
 
-const INBOXES = ['mrgoblinsir@gmail.com', 'rznsenseii@gmail.com'];
-
 export function ContactForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -15,37 +13,15 @@ export function ContactForm() {
     setState('sending');
     setMsg('');
     try {
-      const sends = INBOXES.map((to) =>
-        fetch(`https://formsubmit.co/ajax/${to}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            name,
-            email,
-            message,
-            _subject: `New portfolio contact from ${name}`,
-            _template: 'table',
-            _replyto: email,
-          }),
-        })
-          .then((r) => r.ok)
-          .catch(() => false),
-      );
-      const results = await Promise.all(sends);
-      if (results.every((ok) => !ok)) {
-        // fallback: site backend (logs + optional webhook)
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, message }),
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok || !data.ok) throw new Error(data.error || 'Failed to send');
-        setMsg(data.message || 'Message received!');
-      } else {
-        setMsg(`Thanks ${name}! Your message is on its way to my inbox.`);
-      }
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Failed to send');
       setState('done');
+      setMsg(data.message || 'Message received!');
       setName('');
       setEmail('');
       setMessage('');
