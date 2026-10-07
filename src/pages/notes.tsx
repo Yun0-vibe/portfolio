@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Clock } from 'lucide-react';
+import { ArrowLeftIcon, ClockIcon } from '../components/icons';
 import { NOTES } from '../data';
 import { Section } from '../components/section';
 import { Reveal } from '../components/reveal';
@@ -25,7 +25,7 @@ export function NotesPage() {
               >
                 <div className="flex-1">
                   <p className="flex items-center gap-2 font-mono text-[11px] text-stone-500">
-                    {n.date} <span className="flex items-center gap-1"><Clock size={11} /> {n.minutes} min</span>
+                    {n.date} <span className="flex items-center gap-1"><ClockIcon size={11} /> {n.minutes} min</span>
                   </p>
                   <h3 className="mt-1 text-lg font-bold text-white">{n.title}</h3>
                 </div>
@@ -43,7 +43,7 @@ export function NotesPage() {
               }}
               className="flex items-center gap-1 font-mono text-xs text-stone-500 transition-colors hover:text-lime-300"
             >
-              <ArrowLeft size={13} /> all notes
+              <ArrowLeftIcon size={13} /> all notes
             </button>
             <p className="mt-4 font-mono text-xs text-stone-500">
               {active.date} · {active.minutes} min read

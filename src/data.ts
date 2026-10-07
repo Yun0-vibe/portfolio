@@ -260,7 +260,7 @@ export const NOTES: Note[] = [
 
 export const CONTACTS = {
   email: 'contact@vibeyuno.me',
-  discord: { label: 'darkwiz.vibe', href: 'https://discordapp.com/users/darkwiz.vibe' },
+  discord: { label: 'yuno_vibe.exe', href: 'https://discordapp.com/users/darkwiz.vibe' },
   whatsapp: { label: 'vibeyuno.dev', href: 'https://wa.me/vibeyuno.dev' },
   github: { label: 'Yun0-vibe', href: 'https://github.com/Yun0-vibe' },
 };

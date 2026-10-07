@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowDown, ArrowRight, ArrowUpRight, Bot, Globe, Gamepad2, Sparkles, Cpu } from 'lucide-react';
+import { ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon, BotIcon, GlobeIcon, GamepadIcon, SparklesIcon, CpuIcon } from '../components/icons';
 import { PROJECTS, STACK_GROUPS, JOURNEY, SERVICES, NOTES, CONTACTS, FOUNDATION } from '../data';
 import { Section } from '../components/section';
 import { Reveal, CountUp } from '../components/reveal';
@@ -8,10 +8,10 @@ import { ContactForm, Guestbook } from '../components/forms';
 import type { Project } from '../data';
 
 const SERVICE_ICONS: Record<string, React.ReactNode> = {
-  globe: <Globe size={18} />,
-  bot: <Bot size={18} />,
-  gamepad: <Gamepad2 size={18} />,
-  sparkles: <Sparkles size={18} />,
+  globe: <GlobeIcon size={18} />,
+  bot: <BotIcon size={18} />,
+  gamepad: <GamepadIcon size={18} />,
+  sparkles: <SparklesIcon size={18} />,
 };
 
 const TICKER = ['GO', 'JAVA 21', 'TYPESCRIPT', 'REACT', 'FASTAPI', 'PAPER API', 'eBPF/XDP', 'DOCKER', 'POSTGRES', 'TAILWIND', 'GRADLE', 'NGINX'];
@@ -45,7 +45,7 @@ export function Hero() {
               to="/projects"
               className="inline-flex items-center gap-2 rounded-xl bg-lime-500 px-6 py-3 font-mono text-sm font-bold text-black transition-all hover:-translate-y-0.5 hover:bg-lime-400 hover:shadow-[0_0_30px_-6px_rgba(132,204,22,0.7)]"
             >
-              ~/view-work <ArrowRight size={15} />
+              ~/view-work <ArrowRightIcon size={15} />
             </Link>
             <a
               href="#contact"
@@ -55,7 +55,7 @@ export function Hero() {
               }}
               className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-6 py-3 font-mono text-sm font-bold text-white transition-colors hover:border-lime-500/50 hover:text-lime-300"
             >
-              contact.init <ArrowDown size={15} />
+              contact.init <ArrowDownIcon size={15} />
             </a>
           </div>
           <dl className="anim-rise mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4" style={{ animationDelay: '360ms' }}>
@@ -160,7 +160,7 @@ export function HomePage({ onPick }: { onPick: (p: Project) => void }) {
                   ● {f.status}
                 </span>
                 <h3 className="mt-4 flex items-center gap-2 text-xl font-bold text-white">
-                  <Cpu size={18} className="text-lime-400" /> {f.name}
+                  <CpuIcon size={18} className="text-lime-400" /> {f.name}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-stone-400">{f.text}</p>
               </div>
@@ -268,7 +268,7 @@ export function HomePage({ onPick }: { onPick: (p: Project) => void }) {
                   <strong className="text-white">whatsapp</strong> — chat
                 </a>
                 <a className="flex items-center gap-1 text-stone-300 transition-colors hover:text-lime-300" href={CONTACTS.github.href} target="_blank" rel="noreferrer">
-                  <strong className="text-white">github</strong> — {CONTACTS.github.label} <ArrowUpRight size={13} />
+                  <strong className="text-white">github</strong> — {CONTACTS.github.label} <ArrowUpRightIcon size={13} />
                 </a>
               </div>
             </div>

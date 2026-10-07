@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Send, CheckCircle2, AlertCircle, MessageSquarePlus, Terminal } from 'lucide-react';
+import { SendIcon, CheckCircleIcon, AlertIcon, MessagePlusIcon, TerminalIcon } from './icons';
 
 export function ContactForm() {
   const [name, setName] = useState('');
@@ -37,7 +37,7 @@ export function ContactForm() {
   return (
     <form onSubmit={submit} className="card rounded-3xl p-6">
       <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-stone-500">
-        <Terminal size={13} className="text-lime-400" /> new_transmission
+        <TerminalIcon size={13} className="text-lime-400" /> new_transmission
       </p>
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <input className={input} placeholder="your_name" value={name} onChange={(e) => setName(e.target.value)} required maxLength={80} />
@@ -55,16 +55,16 @@ export function ContactForm() {
         disabled={state === 'sending'}
         className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-lime-500 px-5 py-3 font-mono text-sm font-bold text-black transition-all hover:bg-lime-400 disabled:opacity-50"
       >
-        <Send size={15} /> {state === 'sending' ? 'transmitting…' : './send_message'}
+        <SendIcon size={15} /> {state === 'sending' ? 'transmitting…' : './send_message'}
       </button>
       {state === 'done' && (
         <p className="mt-3 flex items-center gap-2 font-mono text-sm text-lime-300">
-          <CheckCircle2 size={15} /> {msg}
+          <CheckCircleIcon size={15} /> {msg}
         </p>
       )}
       {state === 'error' && (
         <p className="mt-3 flex items-center gap-2 font-mono text-sm text-red-400">
-          <AlertCircle size={15} /> {msg}
+          <AlertIcon size={15} /> {msg}
         </p>
       )}
       <p className="mt-3 font-mono text-[11px] text-stone-600">serverless endpoint — no backend server to keep awake.</p>
@@ -98,7 +98,7 @@ export function Guestbook() {
   return (
     <div className="card rounded-3xl p-6">
       <h3 className="flex items-center gap-2 font-mono text-sm font-bold text-white">
-        <MessageSquarePlus size={16} className="text-lime-400" /> guestbook.log
+        <MessagePlusIcon size={16} className="text-lime-400" /> guestbook.log
       </h3>
       <p className="mt-1 font-mono text-xs text-stone-500">say hi — stored in your browser, no account needed.</p>
       <form onSubmit={add} className="mt-4 flex flex-col gap-2 sm:flex-row">

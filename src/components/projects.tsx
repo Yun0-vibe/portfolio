@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, Search, Terminal } from 'lucide-react';
+import { ArrowRightIcon, ArrowUpRightIcon, SearchIcon, TerminalIcon } from './icons';
 import { PROJECTS, type Project } from '../data';
 
 const FILTERS = ['All', 'Web', 'Plugin', 'Security', 'Infra', 'Bot', 'Store'] as const;
@@ -27,7 +27,7 @@ export function ProjectFilters({ onPick }: { onPick: (p: Project) => void }) {
     <div>
       <div className="flex flex-col gap-3 md:flex-row md:items-center">
         <label className="card flex flex-1 items-center gap-2 rounded-xl px-4 py-2.5 text-sm">
-          <Search size={15} className="shrink-0 text-stone-500" />
+          <SearchIcon size={15} className="shrink-0 text-stone-500" />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
@@ -104,7 +104,7 @@ export function ProjectCard({ p, onOpen, dim, compact }: { p: Project; onOpen: (
       </div>
       <h3 className="mt-3 text-xl font-bold tracking-tight text-white">
         {p.title}
-        <ArrowUpRight size={16} className="ml-1 inline text-stone-600 transition-all group-hover:translate-x-0.5 group-hover:text-lime-400" />
+        <ArrowUpRightIcon size={16} className="ml-1 inline text-stone-600 transition-all group-hover:translate-x-0.5 group-hover:text-lime-400" />
       </h3>
       <p className="mt-1 font-mono text-[13px] text-stone-500">{p.tagline}</p>
       {!compact && <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-stone-400">{p.description}</p>}
@@ -130,7 +130,7 @@ export function SelectedWork({ onPick }: { onPick: (p: Project) => void }) {
           <div className="grid-bg absolute inset-0" style={{ maskImage: 'none', WebkitMaskImage: 'none' }} />
           <div className="relative">
             <div className="flex items-center gap-2">
-              <Terminal size={14} className="text-lime-400" />
+              <TerminalIcon size={14} className="text-lime-400" />
               <span className="font-mono text-xs uppercase tracking-widest text-lime-300">featured build</span>
             </div>
             <h3 className="mt-3 text-3xl font-extrabold tracking-tight text-white md:text-5xl">{hero.title}</h3>
@@ -147,7 +147,7 @@ export function SelectedWork({ onPick }: { onPick: (p: Project) => void }) {
             ))}
           </div>
           <span className="mt-auto inline-flex items-center gap-2 pt-5 font-mono text-sm font-bold text-lime-300">
-            Open case file <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+            Open case file <ArrowRightIcon size={15} className="transition-transform group-hover:translate-x-1" />
           </span>
         </div>
       </button>
@@ -161,7 +161,7 @@ export function SelectedWork({ onPick }: { onPick: (p: Project) => void }) {
         to="/projects"
         className="mt-5 inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-2.5 font-mono text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:border-lime-500/50 hover:text-lime-300"
       >
-        ~/view-all <span className="text-stone-500">{PROJECTS.length} projects</span> <ArrowRight size={15} />
+        ~/view-all <span className="text-stone-500">{PROJECTS.length} projects</span> <ArrowRightIcon size={15} />
       </Link>
     </div>
   );

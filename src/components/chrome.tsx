@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Command, Search, ArrowUp, ArrowUpRight, Copy, Check, Github, Mail, MessageCircle, Phone, Menu, X } from 'lucide-react';
+import {
+  CommandIcon, SearchIcon, ArrowUpIcon, ArrowUpRightIcon, CopyIcon, CheckIcon,
+  GithubIcon, MailIcon, DiscordIcon, WhatsappIcon, MenuIcon, CloseIcon,
+} from './icons';
 import { useScrollProgress } from '../hooks';
 import { PROJECTS, CONTACTS } from '../data';
 
@@ -14,6 +17,7 @@ const LINKS = [
 export function Navbar({ onPalette }: { onPalette: () => void }) {
   const progress = useScrollProgress();
   const loc = useLocation();
+  const nav = useNavigate();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -36,12 +40,19 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
             scrolled ? 'border-white/10 bg-black/70 shadow-[0_8px_40px_-8px_rgba(0,0,0,0.9)] backdrop-blur-xl' : 'border-white/[0.07] bg-black/40 backdrop-blur-lg'
           }`}
         >
-          <Link to="/" className="flex items-center gap-2.5">
+          <button
+            onClick={() => {
+              if (loc.pathname === '/') window.location.reload();
+              else nav('/');
+            }}
+            className="flex items-center gap-2.5"
+            aria-label="Back to landing"
+          >
             <img src="/avatar.png" alt="Yuno" className="h-8 w-8 rounded-full border border-lime-500/40" />
             <span className="font-mono text-sm font-bold tracking-tight text-white">
               YUNO<span className="text-lime-400">_</span>
             </span>
-          </Link>
+          </button>
           <nav className="ml-2 hidden items-center gap-1 md:flex">
             {LINKS.map((l) => (
               <Link
@@ -63,7 +74,7 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
               onClick={onPalette}
               className="hidden items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 font-mono text-xs text-stone-400 transition-colors hover:border-white/20 hover:text-white sm:flex"
             >
-              <Search size={13} /> <kbd className="rounded border border-white/10 px-1 text-[10px]">⌘K</kbd>
+              <SearchIcon size={13} /> <kbd className="rounded border border-white/10 px-1 text-[10px]">⌘K</kbd>
             </button>
             <Link
               to="/"
@@ -77,7 +88,7 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
               aria-label="Menu"
               className="rounded-lg border border-white/10 p-2 text-stone-300 md:hidden"
             >
-              {open ? <X size={16} /> : <Menu size={16} />}
+              {open ? <CloseIcon size={16} /> : <MenuIcon size={16} />}
             </button>
           </div>
           <div className="absolute inset-x-4 bottom-0 h-px overflow-hidden rounded-full">
@@ -102,7 +113,7 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
                   <span className="mr-3 text-xs text-stone-600">0{i + 1}</span>
                   {l.label}
                 </span>
-                <ArrowUpRight size={16} className="text-stone-600" />
+                <ArrowUpRightIcon size={16} className="text-stone-600" />
               </Link>
             ))}
             <button
@@ -112,7 +123,7 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
               }}
               className="mt-1 flex w-full items-center gap-2 rounded-xl border border-white/10 px-4 py-3 font-mono text-sm text-stone-400"
             >
-              <Search size={14} /> Search / commands…
+              <SearchIcon size={14} /> Search / commands…
             </button>
           </nav>
         </div>
@@ -177,7 +188,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-          <Command size={15} className="text-lime-400" />
+          <CommandIcon size={15} className="text-lime-400" />
           <input
             autoFocus
             value={q}
@@ -185,7 +196,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
             placeholder="Type a page, project, or action…"
             className="w-full bg-transparent font-mono text-sm text-white outline-none placeholder:text-stone-600"
           />
-          {copied && <Check size={14} className="text-lime-400" />}
+          {copied && <CheckIcon size={14} className="text-lime-400" />}
         </div>
         <div className="max-h-72 overflow-y-auto p-2">
           {results.length === 0 && <p className="px-3 py-6 text-center font-mono text-sm text-stone-500">No matches. Try "projects".</p>}
@@ -217,10 +228,10 @@ export function Footer() {
   };
 
   const socials = [
-    { icon: <Github size={14} />, short: 'GitHub', href: CONTACTS.github.href },
-    { icon: <MessageCircle size={14} />, short: 'Discord', href: CONTACTS.discord.href },
-    { icon: <Phone size={14} />, short: 'WhatsApp', href: CONTACTS.whatsapp.href },
-    { icon: <Mail size={14} />, short: 'Email', href: `mailto:${CONTACTS.email}` },
+    { icon: <GithubIcon size={14} />, short: 'GitHub', href: CONTACTS.github.href },
+    { icon: <DiscordIcon size={14} />, short: 'Discord', href: CONTACTS.discord.href },
+    { icon: <WhatsappIcon size={14} />, short: 'WhatsApp', href: CONTACTS.whatsapp.href },
+    { icon: <MailIcon size={14} />, short: 'Email', href: `mailto:${CONTACTS.email}` },
   ];
 
   return (
@@ -246,7 +257,7 @@ export function Footer() {
               className="group inline-flex items-center gap-1.5 rounded-xl bg-lime-500 px-5 py-2 text-sm font-bold text-black transition-all hover:-translate-y-0.5 hover:bg-lime-400"
             >
               Start a project
-              <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRightIcon size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
         </div>
@@ -284,7 +295,7 @@ export function Footer() {
               onClick={copyEmail}
               className="mt-2.5 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 font-mono text-xs text-stone-300 transition-colors hover:border-lime-500/50 hover:text-white"
             >
-              {copied ? <Check size={13} className="text-lime-400" /> : <Copy size={13} />}
+              {copied ? <CheckIcon size={13} className="text-lime-400" /> : <CopyIcon size={13} />}
               {copied ? 'copied!' : CONTACTS.email}
             </button>
           </div>
@@ -302,7 +313,7 @@ export function Footer() {
 function BackToTop() {
   return (
     <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-1 transition-colors hover:text-lime-300">
-      <ArrowUp size={13} /> top
+      <ArrowUpIcon size={13} /> top
     </button>
   );
 }
