@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
+  background: #0c0a09;
 }
 
 html,
@@ -16,16 +17,10 @@ body {
 }
 
 body {
-  @apply bg-paper text-ink font-sans antialiased;
-}
-
-.dark body,
-.dark {
-  color-scheme: dark;
-}
-
-.dark body {
-  @apply bg-[#0C0A09] text-stone-100;
+  background: #0c0a09;
+  color: #e7e5e4;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
@@ -37,21 +32,37 @@ body {
   font-family: 'Instrument Serif', Georgia, serif;
 }
 
-.paper-grid {
+/* faint blueprint grid */
+.grid-bg {
   background-image:
-    linear-gradient(to right, rgba(28, 25, 23, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(28, 25, 23, 0.055) 1px, transparent 1px);
-  background-size: 28px 28px;
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 20%, black 30%, transparent 75%);
 }
 
-.dark .paper-grid {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
 }
 
-.card-line {
-  @apply border border-stone-900/10 dark:border-white/10;
+.card-hover {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(132, 204, 22, 0.45);
+  box-shadow:
+    0 12px 40px -12px rgba(132, 204, 22, 0.25),
+    0 8px 24px -8px rgba(0, 0, 0, 0.8);
+}
+
+.glow-text {
+  text-shadow: 0 0 32px rgba(132, 204, 22, 0.45);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -65,6 +76,38 @@ body {
 .prose-notes p {
   margin-bottom: 0.9rem;
   line-height: 1.75;
+}
+
+/* terminal caret */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.caret::after {
+  content: '▊';
+  margin-left: 2px;
+  color: #84cc16;
+  animation: blink 1.1s steps(1) infinite;
+}
+
+/* marquee ticker */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
 }
 
 /* ---------- motion ---------- */
@@ -121,6 +164,16 @@ body {
   }
 }
 
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(26px);
@@ -151,10 +204,14 @@ body {
   animation: page-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.anim-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+
 .blob {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(90px);
+  filter: blur(110px);
   pointer-events: none;
 }
 
@@ -176,6 +233,8 @@ body {
   .anim-fade,
   .anim-pop,
   .anim-page,
+  .anim-float,
+  .animate-marquee,
   .blob-drift,
   .blob-drift-slow {
     animation: none;

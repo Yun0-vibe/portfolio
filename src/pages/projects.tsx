@@ -7,7 +7,7 @@ import type { Project } from '../data';
 export function ProjectsPage() {
   const [active, setActive] = useState<Project | null>(null);
   return (
-    <main>
+    <main className="pt-24">
       <Section
         kicker="Work archive"
         title={<>All projects<span className="text-lime-700">.</span></>}

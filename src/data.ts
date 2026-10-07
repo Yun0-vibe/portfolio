@@ -146,7 +146,7 @@ export const PROJECTS: Project[] = [
 ];
 
 export const STACK_GROUPS: { title: string; items: string[] }[] = [
-  { title: 'Languages', items: ['TypeScript', 'Java', 'Python', 'PHP', 'C', 'QBasic'] },
+  { title: 'Languages', items: ['TypeScript', 'Java', 'Go', 'Python', 'PHP', 'C', 'QBasic'] },
   { title: 'Frontend', items: ['React', 'Next.js', 'Tailwind CSS'] },
   { title: 'Backend', items: ['Node.js', 'Express.js', 'MongoDB', 'Firebase', 'MySQL'] },
   { title: 'Infra', items: ['Vercel', 'Pterodactyl', 'Nginx', 'Oracle Cloud', 'AWS & GCP', 'Git & GitHub'] },
