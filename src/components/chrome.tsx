@@ -98,8 +98,8 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
       </div>
 
       {open && (
-        <div className="anim-fade fixed inset-0 z-30 bg-black/80 pt-24 backdrop-blur-sm md:hidden" onClick={() => setOpen(false)}>
-          <nav className="mx-4 overflow-hidden rounded-2xl border border-white/10 bg-stone-950 p-2" onClick={(e) => e.stopPropagation()}>
+        <div className="anim-fade fixed inset-0 z-30 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm md:hidden" onClick={() => setOpen(false)}>
+          <nav className="anim-pop w-full max-w-sm overflow-hidden rounded-2xl border border-white/10 bg-stone-950 p-2" onClick={(e) => e.stopPropagation()}>
             {LINKS.map((l, i) => (
               <Link
                 key={l.to}
