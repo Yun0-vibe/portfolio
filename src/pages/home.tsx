@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import { ArrowDown, ArrowRight, MapPin, Bot, Globe, Gamepad2, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowRight, Bot, Globe, Gamepad2, Sparkles } from 'lucide-react';
 import { PROJECTS, STACK_GROUPS, JOURNEY, SERVICES, NOTES, CONTACTS } from '../data';
-import { useKathmanduTime } from '../hooks';
 import { Section } from '../components/section';
 import { Reveal, CountUp } from '../components/reveal';
 import { SelectedWork } from '../components/projects';
@@ -16,16 +15,12 @@ const SERVICE_ICONS: Record<string, React.ReactNode> = {
 };
 
 export function Hero() {
-  const time = useKathmanduTime();
   return (
     <div className="paper-grid relative overflow-hidden border-b border-stone-900/10 dark:border-white/10">
       <div className="blob blob-drift left-[-120px] top-[-120px] h-80 w-80 bg-lime-500/20 dark:bg-lime-500/10" />
       <div className="blob blob-drift-slow right-[-100px] top-20 h-72 w-72 bg-orange-500/15 dark:bg-orange-500/10" />
       <div className="relative mx-auto max-w-6xl px-4 pb-14 pt-14 md:pt-20">
-        <div className="anim-rise flex flex-wrap items-center gap-2 font-mono text-xs">
-          <span className="flex items-center gap-1.5 rounded-full border border-stone-900/15 px-3 py-1 dark:border-white/15">
-            <MapPin size={12} /> Kathmandu, Nepal — {time}
-          </span>
+        <div className="anim-rise flex flex-wrap items-center gap-2 font-mono text-xs" style={{ animationDelay: '0ms' }}>
           <span className="rounded-full bg-stone-900 px-3 py-1 text-white dark:bg-white dark:text-stone-900">available for freelance</span>
         </div>
         <h1 className="anim-rise mt-6 max-w-4xl text-5xl font-extrabold leading-[0.95] tracking-tighter md:text-7xl" style={{ animationDelay: '90ms' }}>

@@ -8,7 +8,7 @@ Complete redesign of the old dark-purple portfolio. New in v2:
 - **4 routes**: `/` home · `/projects` searchable archive · `/notes` reader · `/uses` setup & colophon
 - **Command palette** (`Ctrl/⌘ + K`): jump to pages, projects, toggle theme, copy email
 - **Project archive**: live search + category/status filters + detail modals
-- **Live Kathmandu clock**, scroll progress, availability badge, stats
+- **Scroll reveals, animated counters, page transitions**, availability badge, stats
 - **Contact form** via Vercel serverless `POST /api/contact` (optional `CONTACT_WEBHOOK_URL` forwarding to Discord/Slack)
 - **Guestbook** (localStorage, no login), copy-email buttons, resume-friendly SEO (OG tags, sitemap, robots, JSON-LD)
 
