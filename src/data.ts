@@ -41,6 +41,21 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: 'strenox-theme',
+    title: 'StrenoxCloud Theme',
+    tagline: 'Custom Pterodactyl panel theme + addons',
+    description:
+      'A full visual overhaul of the Pterodactyl game panel in the Strenox identity — re-skinned dashboard, custom routes and addons, built directly on the panel\'s React + TypeScript codebase around the Strenox hexagon mark.',
+    stack: ['React', 'TypeScript', 'Tailwind', 'Pterodactyl'],
+    category: 'Web',
+    status: 'Ongoing',
+    year: '2026',
+    accent: '#a855f7',
+    links: [
+      { label: 'github', href: 'https://github.com/Yun0-vibe/StrenoxTheme' },
+    ],
+  },
+    {
     slug: 'playertales',
     title: 'PlayerTales',
     tagline: 'Auto-generated player storybooks (Paper 1.20+)',
