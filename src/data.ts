@@ -47,12 +47,27 @@ export const PROJECTS: Project[] = [
     description:
       'A full visual overhaul of the Pterodactyl game panel in the Strenox identity — re-skinned dashboard, custom routes and addons, built directly on the panel\'s React + TypeScript codebase around the Strenox hexagon mark.',
     stack: ['React', 'TypeScript', 'Tailwind', 'Pterodactyl'],
-    category: 'Web',
+    category: 'Infra',
     status: 'Ongoing',
     year: '2026',
     accent: '#a855f7',
     links: [
       { label: 'github', href: 'https://github.com/Yun0-vibe/StrenoxTheme' },
+    ],
+  },
+  {
+    slug: 'trinity',
+    title: 'Trinity',
+    tagline: 'Cinematic football tribute — Messi · Ronaldo · Neymar',
+    description:
+      'A movie-like fan tribute to the holy trinity of football. Each legend owns a fully re-skinned page — colors, fonts, particles, music and mood all transform via a live CSS-variable theme system — plus a choose-your-legend home and head-to-head. Built with Next.js 14 + TypeScript, zero-config Vercel deploy.',
+    stack: ['Next.js', 'TypeScript', 'Vercel'],
+    category: 'Web',
+    status: 'Finished',
+    year: '2026',
+    accent: '#eab308',
+    links: [
+      { label: 'github', href: 'https://github.com/Yun0-vibe/trinity' },
     ],
   },
     {
