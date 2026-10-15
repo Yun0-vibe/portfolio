@@ -303,7 +303,7 @@ export function Footer() {
         </div>
 
         <div className="mt-6 flex items-center justify-between border-t border-white/[0.07] pt-4 font-mono text-xs text-stone-600">
-          <span>© {new Date().getFullYear()} Arjan Subedi · Strenox Foundation · v{VERSION}</span>
+          <span>© {new Date().getFullYear()} Yuno · Strenox Foundation · v{VERSION}</span>
           <BackToTop />
         </div>
       </div>
