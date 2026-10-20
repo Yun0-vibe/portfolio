@@ -35,81 +35,90 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
 
   return (
     <>
-      <div className="anim-fade fixed inset-x-0 top-0 z-40">
+      <div className="anim-fade fixed inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6 sm:pt-5">
         <header
-          className={`border-b transition-colors duration-300 ${
-            scrolled ? 'border-white/10 bg-[#0a0a0b]/90 backdrop-blur-xl' : 'border-transparent'
+          className={`mx-auto flex h-14 max-w-6xl items-center gap-5 rounded-2xl border px-4 transition-all duration-300 sm:px-5 ${
+            scrolled
+              ? 'border-white/12 bg-[#08070d]/85 shadow-[0_20px_60px_-30px_rgba(0,0,0,1)] backdrop-blur-xl'
+              : 'border-white/[0.07] bg-[#08070d]/40 backdrop-blur-md'
           }`}
         >
-          <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-5">
-            <button
-              onClick={() => {
-                if (loc.pathname === '/') window.location.reload();
-                else nav('/');
-              }}
-              className="flex items-center gap-2.5"
-              aria-label="Back to landing"
-            >
-              <img src="/avatar.png" alt="Yuno" className="h-7 w-7 rounded-full border border-white/15" />
-              <span className="text-sm font-medium tracking-tight text-white">Yuno</span>
-            </button>
-            <nav className="hidden items-center gap-6 md:flex">
-              {LINKS.map((l) => (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  className={`link text-sm ${
-                    loc.pathname === l.to ? 'text-white' : 'text-stone-500 hover:text-stone-200'
-                  }`}
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-            <div className="ml-auto flex items-center gap-5">
-              <span className="hidden items-center gap-2 lg:flex">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                <span className="label">Available for work</span>
-              </span>
-              <button
-                onClick={onPalette}
-                className="flex items-center gap-2 text-stone-600 transition-colors hover:text-stone-300"
-                aria-label="Open search"
-              >
-                <SearchIcon size={14} />
-                <kbd className="hidden text-[10px] sm:inline">⌘K</kbd>
-              </button>
+          <button
+            onClick={() => {
+              if (loc.pathname === '/') window.location.reload();
+              else nav('/');
+            }}
+            className="group flex items-center gap-2.5"
+            aria-label="Back to landing"
+          >
+            <img
+              src="/avatar.png"
+              alt="Yuno"
+              className="h-7 w-7 rounded-full border border-white/15 transition-transform duration-300 group-hover:scale-105 group-hover:border-violet-400/60"
+            />
+            <span className="text-sm font-medium tracking-tight text-white">Yuno</span>
+          </button>
+          <nav className="hidden items-center gap-1 md:flex">
+            {LINKS.map((l) => (
               <Link
-                to="/"
-                onClick={() => setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 150)}
-                className="hidden border border-white/15 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-white/40 hover:bg-white hover:text-stone-900 sm:block"
+                key={l.to}
+                to={l.to}
+                className={`rounded-lg px-3 py-1.5 text-sm transition-colors duration-200 ${
+                  loc.pathname === l.to
+                    ? 'bg-violet-500/15 text-violet-200'
+                    : 'text-stone-500 hover:bg-white/5 hover:text-white'
+                }`}
               >
-                Hire me
+                {l.label}
               </Link>
-              <button
-                onClick={() => setOpen(!open)}
-                aria-label="Menu"
-                className="text-stone-300 md:hidden"
-              >
-                {open ? <CloseIcon size={18} /> : <MenuIcon size={18} />}
-              </button>
-            </div>
+            ))}
+          </nav>
+          <div className="ml-auto flex items-center gap-3">
+            <span className="hidden items-center gap-2 lg:flex">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+              <span className="label">Available for work</span>
+            </span>
+            <button
+              onClick={onPalette}
+              className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-stone-600 transition-colors duration-200 hover:bg-white/5 hover:text-white"
+              aria-label="Open search"
+            >
+              <SearchIcon size={14} />
+              <kbd className="hidden text-[10px] sm:inline">⌘K</kbd>
+            </button>
+            <Link
+              to="/"
+              onClick={() => setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 150)}
+              className="hidden rounded-lg bg-violet-500 px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-violet-400 hover:shadow-[0_0_30px_-6px_rgba(167,139,250,0.8)] sm:block"
+            >
+              Hire me
+            </Link>
+            <button
+              onClick={() => setOpen(!open)}
+              aria-label="Menu"
+              className="rounded-lg p-2 text-stone-300 transition-colors hover:bg-white/5 md:hidden"
+            >
+              {open ? <CloseIcon size={17} /> : <MenuIcon size={17} />}
+            </button>
           </div>
-          <div className="h-px overflow-hidden">
-            <div className="h-full bg-white/50 transition-[width]" style={{ width: `${progress * 100}%` }} />
+          <div className="absolute inset-x-6 bottom-0 h-px overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-violet-500 to-fuchsia-400 transition-[width]"
+              style={{ width: `${progress * 100}%` }}
+            />
           </div>
         </header>
       </div>
 
       {open && (
-        <div className="anim-fade fixed inset-0 z-30 flex items-center justify-center bg-[#0a0a0b] px-6 md:hidden" onClick={() => setOpen(false)}>
+        <div className="anim-fade fixed inset-0 z-30 flex items-center justify-center bg-[#08070d]/95 px-6 backdrop-blur-sm md:hidden" onClick={() => setOpen(false)}>
           <nav className="anim-pop w-full max-w-xs" onClick={(e) => e.stopPropagation()}>
             {LINKS.map((l, i) => (
               <Link
                 key={l.to}
                 to={l.to}
-                className={`anim-rise rule block py-5 text-3xl font-medium tracking-[-0.03em] ${
-                  loc.pathname === l.to ? 'text-white' : 'text-stone-500'
+                className={`anim-rise rule block py-5 text-3xl font-medium tracking-[-0.03em] transition-colors ${
+                  loc.pathname === l.to ? 'text-violet-300' : 'text-stone-400'
                 }`}
                 style={{ animationDelay: `${i * 60}ms` }}
               >
@@ -175,7 +184,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/75 p-4 pt-24 backdrop-blur-sm" onClick={onClose}>
       <div
-        className="anim-pop w-full max-w-lg overflow-hidden border border-white/12 bg-[#101012]"
+        className="anim-pop w-full max-w-lg overflow-hidden border border-white/12 bg-[#0d0b16]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-3 border-b border-white/10 px-5 py-4">
@@ -231,7 +240,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <p className="font-display text-2xl italic text-white">
-              Yuno<span className="text-stone-600">.</span>
+              Yuno<span className="text-violet-400">.</span>
             </p>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-stone-600">
               Paid Minecraft server and plugin developer. Full-stack web engineer.
@@ -246,7 +255,7 @@ export function Footer() {
                 ['/notes', 'Notes'],
                 ['/uses', 'Setup'],
               ].map(([to, label]) => (
-                <Link key={to} to={to} className="link w-fit text-stone-500 transition-colors hover:text-white">
+                <Link key={to} to={to} className="link w-fit text-stone-500 transition-colors hover:text-violet-300">
                   {label}
                 </Link>
               ))}
@@ -256,7 +265,7 @@ export function Footer() {
             <p className="label">Elsewhere</p>
             <div className="mt-4 flex flex-col gap-2 text-sm">
               {socials.map((s) => (
-                <a key={s.short} href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="link flex w-fit items-center gap-2 text-stone-500 transition-colors hover:text-white">
+                <a key={s.short} href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="link flex w-fit items-center gap-2 text-stone-500 transition-colors hover:text-violet-300">
                   <span className="text-stone-700">{s.icon}</span>
                   {s.short}
                 </a>
@@ -267,7 +276,7 @@ export function Footer() {
             <p className="label">Contact</p>
             <button
               onClick={copyEmail}
-              className="link mt-4 inline-flex items-center gap-2 text-sm text-stone-500 transition-colors hover:text-white"
+              className="link mt-4 inline-flex items-center gap-2 text-sm text-stone-500 transition-colors hover:text-violet-300"
             >
               {copied ? <CheckIcon size={13} className="text-emerald-400" /> : <CopyIcon size={13} />}
               {copied ? 'copied' : 'Copy email'}
