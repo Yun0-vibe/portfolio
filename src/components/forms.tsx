@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SendIcon, CheckCircleIcon, AlertIcon, MessagePlusIcon, TerminalIcon } from './icons';
+import { SendIcon, CheckCircleIcon, AlertIcon, MessagePlusIcon } from '../components/icons';
 
 export function ContactForm() {
   const [name, setName] = useState('');
@@ -21,7 +21,7 @@ export function ContactForm() {
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.ok) throw new Error(data.error || 'Failed to send');
       setState('done');
-      setMsg(data.message || 'Message received!');
+      setMsg(data.message || 'Message received.');
       setName('');
       setEmail('');
       setMessage('');
@@ -32,42 +32,49 @@ export function ContactForm() {
   }
 
   const input =
-    'w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 font-mono text-sm text-white outline-none transition-colors placeholder:text-stone-600 focus:border-purple-500/60';
+    'w-full border-b border-white/15 bg-transparent px-0 py-3 text-sm text-white outline-none transition-colors placeholder:text-stone-600 focus:border-purple-400';
 
   return (
-    <form onSubmit={submit} className="card rounded-3xl p-6">
-      <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-stone-500">
-        <TerminalIcon size={13} className="text-purple-400" /> new_transmission
-      </p>
-      <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        <input className={input} placeholder="your_name" value={name} onChange={(e) => setName(e.target.value)} required maxLength={80} />
-        <input className={input} placeholder="you@email.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+    <form onSubmit={submit} className="border-t border-white/10 pt-8">
+      <p className="text-[11px] uppercase tracking-[0.25em] text-stone-600">New enquiry</p>
+      <div className="mt-6 grid gap-8 sm:grid-cols-2">
+        <label className="block">
+          <span className="text-[11px] uppercase tracking-[0.2em] text-stone-600">Name</span>
+          <input className={`${input} mt-2`} placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)} required maxLength={80} />
+        </label>
+        <label className="block">
+          <span className="text-[11px] uppercase tracking-[0.2em] text-stone-600">Email</span>
+          <input className={`${input} mt-2`} placeholder="you@company.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        </label>
       </div>
-      <textarea
-        className={`${input} mt-3 min-h-32`}
-        placeholder="mission briefing: what are we building? budget + timeline helps."
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        required
-        maxLength={4000}
-      />
+      <label className="mt-8 block">
+        <span className="text-[11px] uppercase tracking-[0.2em] text-stone-600">Project</span>
+        <textarea
+          className={`${input} mt-2 min-h-32 resize-y`}
+          placeholder="What are you building? Scope, budget and timeline help."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          required
+          maxLength={4000}
+        />
+      </label>
       <button
         disabled={state === 'sending'}
-        className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-purple-600 px-5 py-3 font-mono text-sm font-bold text-white transition-all hover:bg-purple-500 disabled:opacity-50"
+        className="mt-8 inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-stone-900 transition-colors hover:bg-purple-200 disabled:opacity-50"
       >
-        <SendIcon size={15} /> {state === 'sending' ? 'transmitting…' : './send_message'}
+        <SendIcon size={15} />
+        {state === 'sending' ? 'Sending…' : 'Send enquiry'}
       </button>
       {state === 'done' && (
-        <p className="mt-3 flex items-center gap-2 font-mono text-sm text-purple-300">
+        <p className="mt-4 flex items-center gap-2 text-sm text-purple-300">
           <CheckCircleIcon size={15} /> {msg}
         </p>
       )}
       {state === 'error' && (
-        <p className="mt-3 flex items-center gap-2 font-mono text-sm text-red-400">
+        <p className="mt-4 flex items-center gap-2 text-sm text-red-400">
           <AlertIcon size={15} /> {msg}
         </p>
       )}
-      <p className="mt-3 font-mono text-[11px] text-stone-600">delivered straight to my inbox — I reply within a day.</p>
     </form>
   );
 }
@@ -96,33 +103,36 @@ export function Guestbook() {
   }
 
   return (
-    <div className="card rounded-3xl p-6">
-      <h3 className="flex items-center gap-2 font-mono text-sm font-bold text-white">
-        <MessagePlusIcon size={16} className="text-purple-400" /> guestbook.log
+    <div className="border-t border-white/10 pt-8">
+      <h3 className="flex items-center gap-2 text-sm font-semibold text-white">
+        <MessagePlusIcon size={15} className="text-purple-400" /> Guestbook
       </h3>
-      <p className="mt-1 font-mono text-xs text-stone-500">say hi — stored in your browser, no account needed.</p>
-      <form onSubmit={add} className="mt-4 flex flex-col gap-2 sm:flex-row">
+      <p className="mt-1.5 text-sm text-stone-500">Leave a note — stored in your browser, no account needed.</p>
+      <form onSubmit={add} className="mt-5 flex flex-col gap-3">
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="name"
-          className="rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 font-mono text-sm text-white outline-none placeholder:text-stone-600 sm:w-32"
+          className="border-b border-white/15 bg-transparent py-2.5 text-sm text-white outline-none placeholder:text-stone-600 focus:border-purple-400"
           maxLength={40}
         />
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="loved the firewall breakdown…"
-          className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 font-mono text-sm text-white outline-none placeholder:text-stone-600"
+          placeholder="a word about the work…"
+          className="border-b border-white/15 bg-transparent py-2.5 text-sm text-white outline-none placeholder:text-stone-600 focus:border-purple-400"
           maxLength={280}
         />
-        <button className="rounded-xl bg-purple-600 px-4 py-2 font-mono text-sm font-bold text-white transition-colors hover:bg-purple-500">sign</button>
+        <button className="w-fit border-b border-white/20 pb-1 text-sm font-semibold text-stone-200 transition-colors hover:border-purple-400 hover:text-purple-300">
+          Sign
+        </button>
       </form>
-      <div className="mt-4 space-y-2">
-        {entries.length === 0 && <p className="font-mono text-xs text-stone-600">-- empty log. be the first entry.</p>}
+      <div className="mt-6 space-y-3">
+        {entries.length === 0 && <p className="text-sm text-stone-600">No signatures yet — be the first.</p>}
         {entries.map((g, i) => (
-          <div key={i} className="rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2 font-mono text-[13px]">
-            <span className="font-bold text-purple-300">{g.name}</span> <span className="text-stone-400">· {g.text}</span>
+          <div key={i} className="border-l border-white/10 pl-4 text-sm">
+            <span className="font-semibold text-purple-300">{g.name}</span>{' '}
+            <span className="text-stone-400">— {g.text}</span>
           </div>
         ))}
       </div>

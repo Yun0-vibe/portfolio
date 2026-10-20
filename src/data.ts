@@ -250,8 +250,8 @@ export const STACK_GROUPS: { title: string; items: string[] }[] = [
 export const JOURNEY = [
   {
     period: 'Now',
-    title: 'CEO — Strenox Foundation',
-    text: 'Running the parent company behind StrenoxCloud Hosting, StrenoxDevelopment Studio and the upcoming StrenoxMC server. AeroVibe Studio officially shut down — everything merged into Strenox.',
+    title: 'Building the Strenox group',
+    text: 'StrenoxCloud hosting, StrenoxDevelopment studio, and a growing roster of production plugins and tools shipped for paying clients and live servers.',
   },
   {
     period: 'A year ago',
@@ -265,21 +265,31 @@ export const JOURNEY = [
   },
 ];
 
-export const FOUNDATION = [
+export const ROLES = [
   {
-    name: 'StrenoxCloud Hosting',
-    status: 'Live',
-    text: 'Game-server hosting cloud — custom panel, billing and nodes, built from scratch.',
+    title: 'Manager, YetiMC',
+    org: 'YetiMC',
+    text: 'Running the community server end to end — player experience, staff structure, and the plugin suite that powers it.',
   },
   {
-    name: 'StrenoxDevelopment',
-    status: 'Active',
-    text: 'Dev studio — Minecraft plugins, panels, firewalls and license infrastructure.',
+    title: 'CEO, StrenoxCloud',
+    org: 'StrenoxCloud',
+    text: 'A game-hosting platform built from scratch: custom panel, node infrastructure, billing and 461 passing backend tests.',
   },
   {
-    name: 'StrenoxMC',
-    status: 'Upcoming',
-    text: 'Community Minecraft server — currently in the works. Watch this space.',
+    title: 'Paid Minecraft Server Developer',
+    org: 'Server Engineering',
+    text: 'Hired to build and run production servers — Paper plugins, performance work, uptime and player-facing systems.',
+  },
+  {
+    title: 'Paid Minecraft Plugin Developer',
+    org: 'Plugin Engineering',
+    text: 'Commissioned plugin work: economy, auctions, enchants, farming regions — data-driven, tested, documented.',
+  },
+  {
+    title: 'Full-Stack Web Developer',
+    org: 'Web Engineering',
+    text: 'Web products end to end — React and Next.js front ends, Node, FastAPI and Go back ends, Postgres and Prisma.',
   },
 ];
 

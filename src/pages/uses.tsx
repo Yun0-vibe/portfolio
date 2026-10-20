@@ -4,45 +4,45 @@ import { STACK_GROUPS } from '../data';
 
 export function UsesPage() {
   return (
-    <main className="pt-24">
-      <Section kicker="uses" title={<>Loadout<span className="text-purple-400">.</span></>} blurb="The setup behind the builds — and how this site itself is made.">
-        <div className="grid gap-4 md:grid-cols-2">
+    <main className="pt-28">
+      <Section kicker="Setup" title={<>Loadout<span className="text-purple-400">.</span></>} blurb="The bench behind the builds — and how this site is made.">
+        <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-2">
           <Reveal>
-          <div className="card h-full rounded-2xl p-6">
-            <h3 className="font-mono font-bold text-white">~/daily-setup</h3>
-            <ul className="mt-3 space-y-2 text-sm leading-relaxed text-stone-400">
-              <li><strong className="text-white">Editor:</strong> VS Code + AI assistant for scaffolding, manual review for everything shipped</li>
-              <li><strong className="text-white">Hosting:</strong> Vercel for web, StrenoxCloud + Oracle Cloud / AWS for game servers</li>
-              <li><strong className="text-white">Stack:</strong> TypeScript + React/Next.js up front, Go/Python/Java behind, Postgres/MySQL/MongoDB for data</li>
-              <li><strong className="text-white">Ops:</strong> Nginx edge, XDP firewall, GitHub version control, backups before big changes</li>
-            </ul>
-          </div>
+            <div className="h-full bg-[#0a0813] p-8">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500">Daily setup</h3>
+              <ul className="mt-6 space-y-3 text-sm leading-relaxed text-stone-400">
+                <li><span className="text-stone-200">Editor —</span> VS Code with an AI assistant for scaffolding; every shipped line reviewed by hand.</li>
+                <li><span className="text-stone-200">Hosting —</span> StrenoxCloud for game nodes, Vercel for web, Oracle Cloud and AWS for the heavy lifting.</li>
+                <li><span className="text-stone-200">Stack —</span> TypeScript, React and Next.js on the front; Node, FastAPI, Go and PHP behind; Postgres, MySQL and Mongo for data.</li>
+                <li><span className="text-stone-200">Ops —</span> Nginx at the edge, an XDP firewall in front of it, backups before every risky change.</li>
+              </ul>
+            </div>
           </Reveal>
           <Reveal delay={90}>
-          <div className="card h-full rounded-2xl p-6">
-            <h3 className="font-mono font-bold text-white">~/this-site</h3>
-            <ul className="mt-3 space-y-2 text-sm leading-relaxed text-stone-400">
-              <li><strong className="text-white">Build:</strong> Vite + React 19 + TypeScript + Tailwind CSS, dark command-center theme</li>
-              <li><strong className="text-white">Routes:</strong> react-router, lazy-loaded — / · /projects · /notes · /uses</li>
-              <li><strong className="text-white">Contact:</strong> Vercel serverless function at /api/contact</li>
-              <li><strong className="text-white">Motion:</strong> scroll reveals, counters, page transitions — reduced-motion respected</li>
-            </ul>
-          </div>
+            <div className="h-full bg-[#0a0813] p-8">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-stone-500">This site</h3>
+              <ul className="mt-6 space-y-3 text-sm leading-relaxed text-stone-400">
+                <li><span className="text-stone-200">Build —</span> Vite, React 19, TypeScript and Tailwind CSS.</li>
+                <li><span className="text-stone-200">Routes —</span> react-router, lazy loaded: home, work, notes, setup.</li>
+                <li><span className="text-stone-200">Contact —</span> A Vercel serverless function that mails straight to my inbox.</li>
+                <li><span className="text-stone-200">Motion —</span> Scroll reveals and page transitions, with reduced-motion respected.</li>
+              </ul>
+            </div>
           </Reveal>
         </div>
 
-        <h3 className="mt-10 font-mono text-xs uppercase tracking-widest text-stone-500">~/full-stack-list</h3>
-        <div className="mt-3 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+        <h3 className="mt-14 text-[11px] uppercase tracking-[0.2em] text-stone-600">Full stack</h3>
+        <div className="mt-5 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 md:grid-cols-4">
           {STACK_GROUPS.map((g, i) => (
-            <Reveal key={g.title} delay={(i % 4) * 80}>
-            <div className="card card-hover h-full rounded-2xl p-5">
-              <p className="font-mono text-xs uppercase tracking-widest text-stone-500">{g.title}</p>
-              <ul className="mt-2 space-y-1 font-mono text-sm text-stone-300">
-                {g.items.map((t) => (
-                  <li key={t}><span className="text-purple-500">›</span> {t}</li>
-                ))}
-              </ul>
-            </div>
+            <Reveal key={g.title} delay={(i % 4) * 70}>
+              <div className="h-full bg-[#0a0813] p-6">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-stone-500">{g.title}</p>
+                <ul className="mt-4 space-y-1.5 text-sm text-stone-300">
+                  {g.items.map((t) => (
+                    <li key={t} className="transition-colors hover:text-purple-300">{t}</li>
+                  ))}
+                </ul>
+              </div>
             </Reveal>
           ))}
         </div>

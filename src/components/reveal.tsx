@@ -11,19 +11,25 @@ export function Reveal({ children, delay = 0, className = '' }: { children: Reac
       setVisible(true);
       return;
     }
+    const show = () => setVisible(true);
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            setVisible(true);
+            show();
             io.disconnect();
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' },
     );
     io.observe(el);
-    return () => io.disconnect();
+    // safety net: never leave content permanently hidden
+    const fallback = setTimeout(show, 1800);
+    return () => {
+      io.disconnect();
+      clearTimeout(fallback);
+    };
   }, []);
 
   return (

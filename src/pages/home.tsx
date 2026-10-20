@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon, BotIcon, GlobeIcon, GamepadIcon, SparklesIcon, CpuIcon } from '../components/icons';
-import { PROJECTS, STACK_GROUPS, JOURNEY, SERVICES, NOTES, CONTACTS, FOUNDATION } from '../data';
+import { ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon, BotIcon, GlobeIcon, GamepadIcon, SparklesIcon } from '../components/icons';
+import { PROJECTS, STACK_GROUPS, JOURNEY, SERVICES, NOTES, CONTACTS, ROLES } from '../data';
 import { Section } from '../components/section';
-import { Reveal, CountUp, Typewriter } from '../components/reveal';
+import { Reveal, CountUp } from '../components/reveal';
 import { SelectedWork } from '../components/projects';
 import { ContactForm, Guestbook } from '../components/forms';
 import type { Project } from '../data';
@@ -14,119 +14,73 @@ const SERVICE_ICONS: Record<string, React.ReactNode> = {
   sparkles: <SparklesIcon size={18} />,
 };
 
-const TICKER = ['GO', 'JAVA 21', 'TYPESCRIPT', 'REACT', 'FASTAPI', 'PAPER API', 'eBPF/XDP', 'DOCKER', 'POSTGRES', 'TAILWIND', 'GRADLE', 'NGINX'];
+const FACTS = [
+  { value: '18', label: 'Products shipped' },
+  { value: '461+', label: 'Backend tests passing' },
+  { value: '5', label: 'Production plugin suites' },
+  { value: '10M+', label: 'Packets/sec firewall target' },
+];
 
 export function Hero() {
   return (
     <div className="relative overflow-hidden">
-      <div className="grid-bg absolute inset-0" />
-      <div className="blob blob-drift left-[-140px] top-[-100px] h-96 w-96 bg-purple-600/15" />
-      <div className="blob blob-drift-slow right-[-120px] top-40 h-80 w-80 bg-red-600/10" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-32 sm:pt-36 md:pt-40 lg:grid-cols-5">
-        <div className="lg:col-span-3">
-          <div className="anim-rise flex flex-wrap items-center gap-2 font-mono text-xs">
-            <span className="rounded-full border border-purple-500/30 bg-purple-600/10 px-3 py-1 text-purple-300">
-              ● CEO — Strenox Foundation
-            </span>
-            <span className="rounded-full border border-white/10 px-3 py-1 text-stone-400">open for work</span>
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_60%_at_50%_-10%,rgba(168,85,247,0.16),transparent_70%)]" />
+      <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-36 md:pt-44">
+        <div className="grid items-end gap-14 lg:grid-cols-12">
+          <div className="lg:col-span-8">
+            <p className="anim-fade text-[11px] font-medium uppercase tracking-[0.35em] text-stone-500">
+              Yuno · Kathmandu
+            </p>
+            <h1 className="anim-rise mt-7 text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.03em] text-white sm:text-6xl md:text-[4.5rem]">
+              I build the software
+              <br />
+              that runs <span className="font-display font-normal italic text-purple-300">live</span> businesses.
+            </h1>
+            <p className="anim-rise mt-8 max-w-xl text-lg leading-relaxed text-stone-400" style={{ animationDelay: '120ms' }}>
+              Paid Minecraft server and plugin developer. Full-stack web engineer. Currently managing{' '}
+              <span className="text-stone-200">YetiMC</span> and CEO of{' '}
+              <span className="text-stone-200">StrenoxCloud</span> — hosting, panels, plugins and infrastructure that stay online.
+            </p>
+            <div className="anim-rise mt-10 flex flex-wrap items-center gap-3" style={{ animationDelay: '200ms' }}>
+              <Link
+                to="/projects"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-stone-900 transition-all hover:bg-purple-200"
+              >
+                See selected work
+                <ArrowRightIcon size={15} className="transition-transform group-hover:translate-x-1" />
+              </Link>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-stone-200 transition-colors hover:border-white/40 hover:text-white"
+              >
+                Start a project
+                <ArrowDownIcon size={15} />
+              </a>
+            </div>
           </div>
-          <h1 className="anim-rise mt-6 text-5xl font-extrabold leading-[0.95] tracking-tighter text-white sm:text-6xl md:text-8xl" style={{ animationDelay: '90ms' }}>
-            Hi, I'm Yuno.
-            <br />
-            I ship <span className="font-display glow-text font-normal italic text-purple-400">systems</span> that stay up.
-          </h1>
-          <p className="anim-rise mt-5 max-w-xl text-base leading-relaxed text-stone-400 md:text-lg" style={{ animationDelay: '180ms' }}>
-            17-year-old CEO running <strong className="text-white">StrenoxCloud Hosting</strong>,{' '}
-            <strong className="text-white">StrenoxDevelopment</strong> and the upcoming{' '}
-            <strong className="text-white">StrenoxMC</strong> — firewalls, plugins, panels, bots.
-          </p>
-          <div className="anim-rise mt-7 flex flex-wrap gap-3" style={{ animationDelay: '270ms' }}>
-            <Link
-              to="/projects"
-              className="inline-flex items-center gap-2 rounded-xl bg-purple-600 px-6 py-3 font-mono text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-purple-500 hover:shadow-[0_0_30px_-6px_rgba(168,85,247,0.7)]"
-            >
-              ~/view-work <ArrowRightIcon size={15} />
-            </Link>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-6 py-3 font-mono text-sm font-bold text-white transition-colors hover:border-purple-500/50 hover:text-purple-300"
-            >
-              contact.init <ArrowDownIcon size={15} />
-            </a>
-          </div>
-          <dl className="anim-rise mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4" style={{ animationDelay: '360ms' }}>
-            <div className="card rounded-2xl p-4">
-              <dt className="font-display text-3xl italic text-white">
-                <CountUp to={PROJECTS.length} />
-              </dt>
-              <dd className="mt-1 font-mono text-[11px] uppercase tracking-widest text-stone-500">builds shipped</dd>
-            </div>
-            <div className="card rounded-2xl p-4">
-              <dt className="font-display text-3xl italic text-white">
-                <CountUp to={461} />+
-              </dt>
-              <dd className="mt-1 font-mono text-[11px] uppercase tracking-widest text-stone-500">tests passing</dd>
-            </div>
-            <div className="card rounded-2xl p-4">
-              <dt className="font-display text-3xl italic text-white">10M+</dt>
-              <dd className="mt-1 font-mono text-[11px] uppercase tracking-widest text-stone-500">pps firewall target</dd>
-            </div>
-            <div className="card rounded-2xl p-4">
-              <dt className="font-display text-3xl italic text-white">3</dt>
-              <dd className="mt-1 font-mono text-[11px] uppercase tracking-widest text-stone-500">companies, one ceo</dd>
-            </div>
-          </dl>
-        </div>
 
-        <div className="anim-rise lg:col-span-2" style={{ animationDelay: '250ms' }}>
-          <div className="anim-float relative mx-auto w-fit">
-            <div className="absolute -inset-4 rounded-[2rem] bg-purple-600/20 blur-2xl" />
-            <img
-              src="/avatar.png"
-              alt="Yuno — Strenox Foundation"
-              fetchPriority="high"
-              decoding="async"
-              className="relative h-52 w-52 rounded-[2rem] border border-purple-500/40 object-cover sm:h-64 sm:w-64"
-            />
-            <div className="absolute -bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full border border-white/10 bg-black/80 px-3 py-1.5 font-mono text-[11px] text-purple-300 backdrop-blur">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-purple-400" /> systems nominal
+          <div className="anim-fade lg:col-span-4" style={{ animationDelay: '260ms' }}>
+            <div className="overflow-hidden rounded-2xl border border-white/10">
+              <img src="/avatar.png" alt="Yuno" fetchPriority="high" decoding="async" className="aspect-square w-full object-cover" />
             </div>
-          </div>
-          <div className="card mx-auto mt-8 max-w-sm rounded-2xl p-4 font-mono text-[13px] leading-relaxed">
-            <div className="flex items-center gap-1.5 border-b border-white/[0.07] pb-2 text-stone-500">
-              <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-amber-500/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-purple-600/70" />
-              <span className="ml-2 text-xs">yuno@strenox: ~</span>
-            </div>
-            <div className="space-y-1.5 pt-3">
-              <p><span className="text-purple-400">$</span> <span className="text-stone-300">whoami</span></p>
-              <p className="text-stone-500">yuno — ceo, strenox-foundation</p>
-              <p><span className="text-purple-400">$</span> <span className="text-stone-300">uptime --servers</span></p>
-              <p className="text-stone-500">all nodes <span className="text-purple-300">operational</span></p>
-              <p><span className="text-purple-400">$</span> <span className="text-stone-300">cat critics.txt</span></p>
-              <p className="text-stone-500">"vibe coders know nothing" <span className="text-stone-600">— people who ship nothing</span></p>
-              <p><span className="text-purple-400">$</span> <span className="text-stone-300">./prove_them_wrong --production</span></p>
-              <p className="text-stone-500">✓ {PROJECTS.length} builds shipped · <span className="text-purple-300">461 tests passing</span></p>
-              <p><span className="text-purple-400">$</span> <span className="text-stone-300"><Typewriter text="sleep? never-heard-of-it" delay={1400} /></span></p>
+            <div className="mt-4 flex items-baseline justify-between border-t border-white/10 pt-4">
+              <span className="text-sm text-stone-300">Yuno</span>
+              <span className="text-xs text-stone-500">Strenox · YetiMC</span>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="relative border-y border-white/[0.07] bg-black/50 py-3">
-        <div className="flex overflow-hidden">
-          <div className="animate-marquee flex shrink-0 items-center gap-8 pr-8">
-            {[...TICKER, ...TICKER].map((t, i) => (
-              <span key={i} className="flex items-center gap-8 whitespace-nowrap font-mono text-xs tracking-[0.2em] text-stone-500">
-                {t} <span className="text-purple-500">◆</span>
-              </span>
-            ))}
-          </div>
+        <div className="anim-fade mt-20 grid grid-cols-2 gap-y-8 border-t border-white/10 pt-8 md:grid-cols-4" style={{ animationDelay: '340ms' }}>
+          {FACTS.map((f) => (
+            <div key={f.label}>
+              <p className="font-display text-4xl italic text-white md:text-5xl">{f.value}</p>
+              <p className="mt-2 text-xs uppercase tracking-[0.18em] text-stone-500">{f.label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -138,113 +92,94 @@ export function HomePage({ onPick }: { onPick: (p: Project) => void }) {
     <main>
       <Hero />
 
-      <Section kicker="selected-work" title={<>Recent builds<span className="text-purple-400">.</span></>} blurb="Flagship first. The full archive has search, filters and case files.">
-        <Reveal>
-          <SelectedWork onPick={onPick} />
-        </Reveal>
-      </Section>
-
-      <div className="border-y border-white/[0.07] bg-black/60">
-        <Section
-          kicker="strenox-foundation"
-          title={<>One foundation<span className="text-purple-400">, three missions.</span></>}
-          blurb="I'm the CEO. Everything ships under Strenox — AeroVibe Studio is officially retired."
-        >
-          <div className="grid gap-4 md:grid-cols-3">
-            {FOUNDATION.map((f, i) => (
-              <Reveal key={f.name} delay={(i % 3) * 90}>
-              <div className="card card-hover h-full rounded-2xl p-6">
-                <span
-                  className={`rounded-full px-2.5 py-1 font-mono text-[11px] font-semibold ${
-                    f.status === 'Live'
-                      ? 'bg-purple-600/15 text-purple-300'
-                      : f.status === 'Active'
-                        ? 'bg-sky-500/15 text-sky-300'
-                        : 'border border-dashed border-amber-500/40 text-amber-300'
-                  }`}
-                >
-                  ● {f.status}
-                </span>
-                <h3 className="mt-4 flex items-center gap-2 text-xl font-bold text-white">
-                  <CpuIcon size={18} className="text-purple-400" /> {f.name}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-stone-400">{f.text}</p>
+      <Section kicker="Practice" title={<>What I do<span className="text-purple-400">.</span></>} blurb="Five roles, one standard: it ships, it holds up, and it earns its keep.">
+        <div className="divide-y divide-white/10 border-y border-white/10">
+          {ROLES.map((r, i) => (
+            <Reveal key={r.title} delay={Math.min(i, 3) * 70}>
+              <div className="group grid gap-2 py-8 md:grid-cols-12 md:gap-8">
+                <p className="font-mono text-xs text-stone-600 md:col-span-1">{String(i + 1).padStart(2, '0')}</p>
+                <h3 className="text-2xl font-semibold tracking-tight text-white md:col-span-4 md:text-3xl">{r.title}</h3>
+                <p className="text-sm uppercase tracking-[0.18em] text-stone-500 md:col-span-2">{r.org}</p>
+                <p className="text-sm leading-relaxed text-stone-400 md:col-span-5">{r.text}</p>
               </div>
-              </Reveal>
-            ))}
-          </div>
-        </Section>
-      </div>
-
-      <Section
-        kicker="services"
-        title={<>Hire the foundation<span className="text-purple-400">.</span></>}
-        blurb="Fixed-scope builds with clear pricing. Message me for anything in between."
-      >
-        <div className="grid gap-4 sm:grid-cols-2">
-          {SERVICES.map((s, i) => (
-            <Reveal key={s.title} delay={(i % 2) * 90}>
-            <div className="card card-hover h-full rounded-2xl p-6">
-              <div className="flex items-center gap-3">
-                <span className="rounded-xl border border-purple-500/25 bg-purple-600/10 p-2.5 text-purple-300">{SERVICE_ICONS[s.icon]}</span>
-                <span className="ml-auto font-mono text-xs text-stone-500">{s.price}</span>
-              </div>
-              <h3 className="mt-4 text-lg font-bold text-white">{s.title}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-stone-400">{s.text}</p>
-            </div>
             </Reveal>
           ))}
         </div>
       </Section>
 
-      <div className="border-y border-white/[0.07] bg-black/60">
-        <Section kicker="stack" title={<>Arsenal<span className="text-purple-400">.</span></>} blurb="Grouped by job. Every entry has shipped something real.">
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-            {STACK_GROUPS.map((g, i) => (
-              <Reveal key={g.title} delay={(i % 4) * 80}>
-              <div className="card h-full rounded-2xl p-5">
-                <p className="font-mono text-xs uppercase tracking-widest text-stone-500">~/ {g.title}</p>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {g.items.map((t) => (
-                    <span key={t} className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-xs text-stone-300 transition-colors hover:border-purple-500/50 hover:text-purple-300">
-                      {t}
-                    </span>
-                  ))}
+      <div className="border-y border-white/[0.07]">
+        <Section kicker="Work" title={<>Selected projects<span className="text-purple-400">.</span></>} blurb="Real products, real deployments. The full archive has search and filters.">
+          <Reveal>
+            <SelectedWork onPick={onPick} />
+          </Reveal>
+        </Section>
+      </div>
+
+      <Section kicker="Services" title={<>How I can help<span className="text-purple-400">.</span></>} blurb="Fixed scope, fixed price, no surprises. Message me for anything outside these.">
+        <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
+          {SERVICES.map((s, i) => (
+            <Reveal key={s.title} delay={(i % 2) * 90}>
+              <div className="h-full bg-[#0a0813] p-8 transition-colors hover:bg-[#100c1c]">
+                <div className="flex items-center gap-3">
+                  <span className="text-purple-400">{SERVICE_ICONS[s.icon]}</span>
+                  <span className="ml-auto font-mono text-xs text-stone-500">{s.price}</span>
                 </div>
+                <h3 className="mt-6 text-xl font-semibold text-white">{s.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-stone-400">{s.text}</p>
               </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <div className="border-y border-white/[0.07]">
+        <Section kicker="Stack" title={<>Tools of the trade<span className="text-purple-400">.</span></>} blurb="Nineteen tools, grouped by the job they do.">
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 md:grid-cols-4">
+            {STACK_GROUPS.map((g, i) => (
+              <Reveal key={g.title} delay={(i % 4) * 70}>
+                <div className="h-full bg-[#0a0813] p-6">
+                  <p className="text-[11px] uppercase tracking-[0.2em] text-stone-500">{g.title}</p>
+                  <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5">
+                    {g.items.map((t) => (
+                      <span key={t} className="text-sm text-stone-300 transition-colors hover:text-purple-300">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </Reveal>
             ))}
           </div>
         </Section>
       </div>
 
-      <Section kicker="journey" title={<>How I got here<span className="text-purple-400">.</span></>}>
+      <Section kicker="Background" title={<>The road here<span className="text-purple-400">.</span></>}>
         <Reveal>
-          <ol className="relative ml-2 space-y-6 border-l-2 border-white/10 pl-6">
+          <ol className="relative ml-2 space-y-10 border-l border-white/10 pl-8">
             {JOURNEY.map((j) => (
               <li key={j.title} className="relative">
-                <span className="absolute -left-[31px] top-1 h-3 w-3 rounded-full bg-purple-600 shadow-[0_0_12px_rgba(168,85,247,0.9)] ring-4 ring-[#070613]" />
-                <p className="font-mono text-xs uppercase tracking-widest text-purple-400">{j.period}</p>
-                <h3 className="mt-1 text-xl font-bold text-white">{j.title}</h3>
-                <p className="mt-1 max-w-2xl text-sm leading-relaxed text-stone-400">{j.text}</p>
+                <span className="absolute -left-[35px] top-2 h-2 w-2 rounded-full bg-purple-400 ring-4 ring-[#070613]" />
+                <p className="text-[11px] uppercase tracking-[0.2em] text-purple-400/80">{j.period}</p>
+                <h3 className="mt-2 text-2xl font-semibold text-white">{j.title}</h3>
+                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-stone-400">{j.text}</p>
               </li>
             ))}
           </ol>
         </Reveal>
       </Section>
 
-      <div className="border-y border-white/[0.07] bg-black/60">
-        <Section kicker="notes" title={<>Field logs<span className="text-purple-400">.</span></>} blurb="Short, practical write-ups. Full reader on the Notes page.">
-          <div className="grid gap-4 md:grid-cols-3">
+      <div className="border-y border-white/[0.07]">
+        <Section kicker="Notes" title={<>Field notes<span className="text-purple-400">.</span></>} blurb="Short write-ups on what actually worked.">
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-3">
             {NOTES.map((n, i) => (
-              <Reveal key={n.slug} delay={(i % 3) * 90}>
-              <Link to={`/notes#${n.slug}`} className="card card-hover group block h-full rounded-2xl p-5">
-                <p className="font-mono text-[11px] text-stone-500">
-                  {n.date} · {n.minutes} min
-                </p>
-                <h3 className="mt-2 font-bold leading-snug text-white group-hover:text-purple-300">{n.title}</h3>
-                <p className="mt-2 line-clamp-2 text-sm text-stone-500">{n.body[0]}</p>
-              </Link>
+              <Reveal key={n.slug} delay={(i % 3) * 80}>
+                <Link to={`/notes#${n.slug}`} className="group block h-full bg-[#0a0813] p-7 transition-colors hover:bg-[#100c1c]">
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-stone-500">
+                    {n.date} · {n.minutes} min
+                  </p>
+                  <h3 className="mt-4 text-lg font-semibold leading-snug text-white transition-colors group-hover:text-purple-300">{n.title}</h3>
+                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-stone-400">{n.body[0]}</p>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -252,36 +187,53 @@ export function HomePage({ onPick }: { onPick: (p: Project) => void }) {
       </div>
 
       <Section
-        kicker="contact"
-        title={<>Open a channel<span className="font-display font-normal italic text-purple-400">.</span></>}
-        blurb="Tell me about your server, store, bot or idea. I usually reply within a day."
+        kicker="Contact"
+        title={<>Tell me what you're building<span className="text-purple-400">.</span></>}
+        blurb="Servers, plugins, panels, storefronts. I reply to every message within a day."
       >
-        <div id="contact" className="grid scroll-mt-28 gap-4 lg:grid-cols-5">
-          <Reveal className="lg:col-span-3">
+        <div id="contact" className="grid scroll-mt-28 gap-10 lg:grid-cols-12">
+          <Reveal className="lg:col-span-7">
             <ContactForm />
           </Reveal>
-          <div className="space-y-4 lg:col-span-2">
-            <div className="card rounded-3xl p-6">
-              <p className="font-mono text-xs uppercase tracking-widest text-stone-500">Direct channels</p>
-              <div className="mt-3 space-y-2 font-mono text-sm">
+          <div className="space-y-8 lg:col-span-5">
+            <Reveal delay={90}>
+            <div className="border-t border-white/10 pt-6">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-stone-500">Direct</p>
+              <div className="mt-4 space-y-2.5 text-sm">
                 <a className="block text-stone-300 transition-colors hover:text-purple-300" href={`mailto:${CONTACTS.email}`}>
-                  <strong className="text-white">email</strong> — {CONTACTS.email}
+                  {CONTACTS.email}
                 </a>
                 <a className="block text-stone-300 transition-colors hover:text-purple-300" href={CONTACTS.discord.href} target="_blank" rel="noreferrer">
-                  <strong className="text-white">discord</strong> — {CONTACTS.discord.label}
+                  Discord — {CONTACTS.discord.label}
                 </a>
                 <a className="block text-stone-300 transition-colors hover:text-purple-300" href={CONTACTS.whatsapp.href} target="_blank" rel="noreferrer">
-                  <strong className="text-white">whatsapp</strong> — chat
+                  WhatsApp
                 </a>
                 <a className="flex items-center gap-1 text-stone-300 transition-colors hover:text-purple-300" href={CONTACTS.github.href} target="_blank" rel="noreferrer">
-                  <strong className="text-white">github</strong> — {CONTACTS.github.label} <ArrowUpRightIcon size={13} />
+                  GitHub — {CONTACTS.github.label} <ArrowUpRightIcon size={13} />
                 </a>
               </div>
             </div>
-            <Guestbook />
+            </Reveal>
+            <Reveal delay={150}>
+              <Guestbook />
+            </Reveal>
           </div>
         </div>
       </Section>
+
+      <div className="border-t border-white/[0.07]">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <blockquote className="mx-auto max-w-3xl text-center">
+            <p className="font-display text-2xl italic leading-relaxed text-stone-300 md:text-3xl">
+              “Vibe coders know nothing” — said by people who ship nothing.
+            </p>
+            <footer className="mt-5 text-[11px] uppercase tracking-[0.25em] text-stone-600">
+              {PROJECTS.length} builds · 461 tests · zero excuses
+            </footer>
+          </blockquote>
+        </div>
+      </div>
     </main>
   );
 }

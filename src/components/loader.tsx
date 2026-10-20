@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const LINES = ['$ strenox --boot', '✓ hosting … online', '✓ plugins … online', '✓ firewall … online'];
+const LINES = ['Connecting to workspace', 'Loading project index', 'All systems nominal'];
 
 export function BootLoader({ done }: { done: () => void }) {
   const [leaving, setLeaving] = useState(false);
@@ -10,15 +10,15 @@ export function BootLoader({ done }: { done: () => void }) {
     document.body.style.overflow = 'hidden';
     const timers: ReturnType<typeof setTimeout>[] = [];
     LINES.forEach((_, i) => {
-      timers.push(setTimeout(() => setShown(i + 1), 200 + i * 220));
+      timers.push(setTimeout(() => setShown(i + 1), 240 + i * 240));
     });
     timers.push(
       setTimeout(() => {
         setLeaving(true);
         document.body.style.overflow = '';
-      }, 1250),
+      }, 1200),
     );
-    timers.push(setTimeout(done, 1650));
+    timers.push(setTimeout(done, 1600));
     return () => {
       timers.forEach(clearTimeout);
       document.body.style.overflow = '';
@@ -28,25 +28,22 @@ export function BootLoader({ done }: { done: () => void }) {
   return (
     <div
       className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#070613] transition-all duration-500 ${
-        leaving ? '-translate-y-4 opacity-0' : 'opacity-100'
+        leaving ? '-translate-y-3 opacity-0' : 'opacity-100'
       }`}
     >
-      <div className="relative">
-        <div className="absolute -inset-3 animate-ping rounded-[1.8rem] border border-purple-500/30" />
-        <img src="/logo.svg" alt="" className="relative h-20 w-20 rounded-3xl border border-purple-500/40" />
-      </div>
-      <p className="mt-6 font-mono text-sm font-bold tracking-[0.3em] text-white">
-        YUNO<span className="text-purple-400">_</span>
+      <img src="/logo.svg" alt="" className="h-16 w-16 rounded-2xl border border-purple-500/30" />
+      <p className="mt-7 font-display text-3xl italic text-white">
+        Yuno<span className="text-purple-400">.</span>
       </p>
-      <div className="mt-5 h-20 font-mono text-xs leading-relaxed text-stone-500">
+      <div className="mt-6 h-16 text-xs text-stone-600">
         {LINES.slice(0, shown).map((l) => (
-          <p key={l} className="anim-fade">
-            {l.startsWith('✓') ? <span className="text-purple-400">{l}</span> : <span className="text-stone-300">{l}</span>}
+          <p key={l} className="anim-fade py-0.5">
+            {l}
           </p>
         ))}
       </div>
-      <div className="mt-2 h-1 w-52 overflow-hidden rounded-full bg-white/10">
-        <div className="boot-bar h-full rounded-full bg-purple-600 shadow-[0_0_12px_rgba(168,85,247,0.9)]" />
+      <div className="mt-3 h-px w-48 overflow-hidden bg-white/10">
+        <div className="boot-bar h-full bg-purple-400" />
       </div>
     </div>
   );
