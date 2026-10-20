@@ -31,7 +31,7 @@ export function BootLoader({ done }: { done: () => void }) {
         leaving ? '-translate-y-3 opacity-0' : 'opacity-100'
       }`}
     >
-      <img src="/logo.svg" alt="" className="h-16 w-16 border border-white/15" />
+      <img src="/logo.svg" alt="" className="h-16 w-16 rounded-2xl border border-white/12" />
       <p className="mt-7 font-display text-3xl italic text-white">
         Yuno<span className="text-stone-600">.</span>
       </p>

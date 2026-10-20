@@ -35,79 +35,93 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
 
   return (
     <>
+      {/* scroll progress */}
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-50 h-[2px] bg-white/5">
+        <div
+          className="h-full bg-gradient-to-r from-violet-500 via-fuchsia-400 to-violet-300 transition-[width] duration-150 ease-out"
+          style={{ width: `${progress * 100}%` }}
+        />
+      </div>
+
       <div className="anim-fade fixed inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6 sm:pt-5">
-        <header
-          className={`mx-auto flex h-14 max-w-6xl items-center gap-5 rounded-2xl border px-4 transition-all duration-300 sm:px-5 ${
-            scrolled
-              ? 'border-white/12 bg-[#08070d]/85 shadow-[0_20px_60px_-30px_rgba(0,0,0,1)] backdrop-blur-xl'
-              : 'border-white/[0.07] bg-[#08070d]/40 backdrop-blur-md'
-          }`}
-        >
-          <button
-            onClick={() => {
-              if (loc.pathname === '/') window.location.reload();
-              else nav('/');
-            }}
-            className="group flex items-center gap-2.5"
-            aria-label="Back to landing"
+        <div className="flex justify-center">
+          <header
+            className={`flex w-fit max-w-full items-center gap-1 rounded-full border px-2 py-1.5 transition-all duration-500 ease-out ${
+              scrolled
+                ? 'border-white/10 bg-[#08070d]/85 shadow-[0_24px_70px_-34px_rgba(0,0,0,1)] backdrop-blur-xl'
+                : 'border-white/[0.05] bg-[#08070d]/55 backdrop-blur-lg'
+            }`}
           >
-            <img
-              src="/avatar.png"
-              alt="Yuno"
-              className="h-7 w-7 rounded-full border border-white/15 transition-transform duration-300 group-hover:scale-105 group-hover:border-violet-400/60"
-            />
-            <span className="text-sm font-medium tracking-tight text-white">Yuno</span>
-          </button>
-          <nav className="hidden items-center gap-1 md:flex">
-            {LINKS.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                className={`rounded-lg px-3 py-1.5 text-sm transition-colors duration-200 ${
-                  loc.pathname === l.to
-                    ? 'bg-violet-500/15 text-violet-200'
-                    : 'text-stone-500 hover:bg-white/5 hover:text-white'
-                }`}
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="ml-auto flex items-center gap-3">
-            <span className="hidden items-center gap-2 lg:flex">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-              <span className="label">Available for work</span>
+            <button
+              onClick={() => {
+                if (loc.pathname === '/') window.location.reload();
+                else nav('/');
+              }}
+              className="group ml-1 mr-1 flex items-center gap-2.5 rounded-full pr-3 transition-opacity duration-300 hover:opacity-85"
+              aria-label="Back to landing"
+            >
+              <img
+                src="/avatar.png"
+                alt="Yuno"
+                className="h-7 w-7 rounded-full border border-white/15 shadow-[0_0_18px_-6px_rgba(168,85,247,0.9)] transition-all duration-500 group-hover:scale-105 group-hover:border-violet-400/70"
+              />
+              <span className="hidden text-sm font-medium tracking-tight text-white sm:inline">Yuno</span>
+            </button>
+
+            <span className="h-5 w-px bg-white/10" />
+
+            <nav className="hidden items-center md:flex">
+              {LINKS.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  className={`relative rounded-full px-3.5 py-1.5 text-sm transition-colors duration-300 ${
+                    loc.pathname === l.to ? 'text-white' : 'text-stone-500 hover:text-stone-200'
+                  }`}
+                >
+                  {l.label}
+                  <span
+                    className={`absolute inset-x-3.5 -bottom-px h-px origin-left bg-violet-400 transition-transform duration-500 ease-out ${
+                      loc.pathname === l.to ? 'scale-x-100' : 'scale-x-0'
+                    }`}
+                  />
+                </Link>
+              ))}
+            </nav>
+
+            <span className="hidden h-5 w-px bg-white/10 md:block" />
+
+            <span className="mr-1 hidden items-center gap-2 pl-3 lg:flex">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
+              <span className="label">Available</span>
             </span>
+
             <button
               onClick={onPalette}
-              className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-stone-600 transition-colors duration-200 hover:bg-white/5 hover:text-white"
+              className="mr-1 flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-stone-600 transition-all duration-300 hover:bg-white/5 hover:text-white"
               aria-label="Open search"
             >
               <SearchIcon size={14} />
               <kbd className="hidden text-[10px] sm:inline">⌘K</kbd>
             </button>
+
             <Link
               to="/"
               onClick={() => setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 150)}
-              className="hidden rounded-lg bg-violet-500 px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-violet-400 hover:shadow-[0_0_30px_-6px_rgba(167,139,250,0.8)] sm:block"
+              className="btn btn-violet btn-sm mr-1"
             >
               Hire me
             </Link>
+
             <button
               onClick={() => setOpen(!open)}
               aria-label="Menu"
-              className="rounded-lg p-2 text-stone-300 transition-colors hover:bg-white/5 md:hidden"
+              className="mr-1 rounded-full p-1.5 text-stone-300 transition-colors duration-300 hover:bg-white/5 md:hidden"
             >
               {open ? <CloseIcon size={17} /> : <MenuIcon size={17} />}
             </button>
-          </div>
-          <div className="absolute inset-x-6 bottom-0 h-px overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-violet-500 to-fuchsia-400 transition-[width]"
-              style={{ width: `${progress * 100}%` }}
-            />
-          </div>
-        </header>
+          </header>
+        </div>
       </div>
 
       {open && (
@@ -117,7 +131,7 @@ export function Navbar({ onPalette }: { onPalette: () => void }) {
               <Link
                 key={l.to}
                 to={l.to}
-                className={`anim-rise rule block py-5 text-3xl font-medium tracking-[-0.03em] transition-colors ${
+                className={`anim-rise block border-b border-white/[0.07] py-5 text-3xl font-medium tracking-[-0.03em] transition-colors ${
                   loc.pathname === l.to ? 'text-violet-300' : 'text-stone-400'
                 }`}
                 style={{ animationDelay: `${i * 60}ms` }}
@@ -184,7 +198,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/75 p-4 pt-24 backdrop-blur-sm" onClick={onClose}>
       <div
-        className="anim-pop w-full max-w-lg overflow-hidden border border-white/12 bg-[#0d0b16]"
+        className="anim-pop w-full max-w-lg overflow-hidden rounded-2xl border border-white/12 bg-[#0d0b16] shadow-[0_30px_80px_-30px_rgba(0,0,0,1)]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-3 border-b border-white/10 px-5 py-4">
@@ -245,6 +259,14 @@ export function Footer() {
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-stone-600">
               Paid Minecraft server and plugin developer. Full-stack web engineer.
             </p>
+            <Link
+              to="/"
+              onClick={() => setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 150)}
+              className="btn btn-ghost btn-sm group mt-6"
+            >
+              Start a project
+              <ArrowUpRightIcon size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
           <div className="md:col-span-3">
             <p className="label">Site</p>
@@ -255,7 +277,7 @@ export function Footer() {
                 ['/notes', 'Notes'],
                 ['/uses', 'Setup'],
               ].map(([to, label]) => (
-                <Link key={to} to={to} className="link w-fit text-stone-500 transition-colors hover:text-violet-300">
+                <Link key={to} to={to} className="link w-fit text-stone-500 transition-colors hover:text-violet-200">
                   {label}
                 </Link>
               ))}
@@ -265,7 +287,7 @@ export function Footer() {
             <p className="label">Elsewhere</p>
             <div className="mt-4 flex flex-col gap-2 text-sm">
               {socials.map((s) => (
-                <a key={s.short} href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="link flex w-fit items-center gap-2 text-stone-500 transition-colors hover:text-violet-300">
+                <a key={s.short} href={s.href} target={s.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="link flex w-fit items-center gap-2 text-stone-500 transition-colors hover:text-violet-200">
                   <span className="text-stone-700">{s.icon}</span>
                   {s.short}
                 </a>
@@ -276,7 +298,7 @@ export function Footer() {
             <p className="label">Contact</p>
             <button
               onClick={copyEmail}
-              className="link mt-4 inline-flex items-center gap-2 text-sm text-stone-500 transition-colors hover:text-violet-300"
+              className="link mt-4 inline-flex items-center gap-2 text-sm text-stone-500 transition-colors hover:text-violet-200"
             >
               {copied ? <CheckIcon size={13} className="text-emerald-400" /> : <CopyIcon size={13} />}
               {copied ? 'copied' : 'Copy email'}

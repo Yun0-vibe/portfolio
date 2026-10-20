@@ -25,16 +25,16 @@ export function ProjectCard({
   feature?: boolean;
 }) {
   const style = {
-    '--tint': hexToRgba(p.accent, feature ? 0.22 : 0.13),
-    '--edge': hexToRgba(p.accent, 0.55),
-    '--glow': hexToRgba(p.accent, 0.28),
+    '--tint': hexToRgba(p.accent, feature ? 0.2 : 0.12),
+    '--edge': hexToRgba(p.accent, 0.22),
+    '--glow': hexToRgba(p.accent, 0.16),
   } as React.CSSProperties;
 
   return (
     <button
       onClick={onOpen}
       style={style}
-      className={`surface grain group flex h-full flex-col overflow-hidden text-left ${
+      className={`surface group flex h-full flex-col overflow-hidden rounded-2xl text-left ${
         feature ? 'sm:col-span-2' : ''
       }`}
     >
@@ -53,7 +53,7 @@ export function ProjectCard({
         </div>
 
         <h3
-          className={`mt-7 font-medium leading-[1.05] tracking-[-0.03em] text-white transition-colors duration-300 group-hover:text-stone-300 ${
+          className={`mt-7 font-medium leading-[1.05] tracking-[-0.03em] text-white transition-all duration-500 ease-out group-hover:-translate-y-0.5 group-hover:text-stone-200 ${
             feature ? 'text-3xl md:text-5xl' : 'text-xl md:text-[1.6rem]'
           }`}
         >
@@ -61,7 +61,7 @@ export function ProjectCard({
         </h3>
         <p className={`mt-3 ${feature ? 'text-base md:text-lg' : 'text-sm'} text-stone-400`}>{p.tagline}</p>
         <p
-          className={`mt-5 max-w-2xl leading-relaxed text-stone-500 ${
+          className={`mt-5 max-w-2xl leading-relaxed text-stone-500 transition-colors duration-500 group-hover:text-stone-400 ${
             feature ? 'text-[15px] md:text-base' : 'line-clamp-3 text-[13.5px]'
           }`}
         >
@@ -74,16 +74,13 @@ export function ProjectCard({
           feature ? 'px-8 py-6 md:px-12' : 'px-6 py-5 md:px-7'
         }`}
       >
-        <span className="font-meta text-[11px] text-stone-600 transition-colors duration-300 group-hover:text-stone-400">
+        <span className="font-meta text-[11px] text-stone-600 transition-colors duration-500 group-hover:text-stone-300">
           {p.stack.join('  ·  ')}
         </span>
-        <span
-          className="flex h-8 w-8 shrink-0 items-center justify-center border border-white/10 transition-all duration-300 group-hover:border-transparent"
-          style={{ background: 'transparent' }}
-        >
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-500 ease-out group-hover:bg-white/10">
           <ArrowUpRightIcon
-            size={15}
-            className="text-stone-600 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white"
+            size={16}
+            className="text-stone-600 transition-all duration-500 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white"
           />
         </span>
       </div>
@@ -175,9 +172,9 @@ export function ProjectFilters({ onPick }: { onPick: (p: Project) => void }) {
 export function ProjectModal({ p, onClose }: { p: Project | null; onClose: () => void }) {
   if (!p) return null;
   const style = {
-    '--tint': hexToRgba(p.accent, 0.18),
-    '--edge': hexToRgba(p.accent, 0.5),
-    '--glow': hexToRgba(p.accent, 0.25),
+    '--tint': hexToRgba(p.accent, 0.16),
+    '--edge': hexToRgba(p.accent, 0.24),
+    '--glow': hexToRgba(p.accent, 0.18),
   } as React.CSSProperties;
 
   return (
@@ -185,7 +182,7 @@ export function ProjectModal({ p, onClose }: { p: Project | null; onClose: () =>
       <div className="flex min-h-full items-center justify-center p-4 sm:p-6">
         <div
           style={style}
-          className="surface grain anim-pop max-h-[85vh] w-full max-w-2xl overflow-y-auto p-6 sm:p-10"
+          className="surface grain anim-pop max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl p-6 sm:p-10"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center gap-4">

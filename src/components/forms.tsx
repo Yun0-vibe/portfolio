@@ -59,7 +59,7 @@ export function ContactForm() {
       <div className="mt-8 flex flex-wrap items-center gap-5">
         <button
           disabled={state === 'sending'}
-          className="inline-flex items-center gap-2.5 border border-white/15 bg-white px-6 py-3 text-sm font-medium text-stone-900 transition-colors hover:bg-stone-200 disabled:opacity-50"
+          className="btn btn-primary disabled:opacity-50"
         >
           <SendIcon size={15} />
           {state === 'sending' ? 'Sending…' : 'Send'}

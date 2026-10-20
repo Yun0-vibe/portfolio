@@ -14,9 +14,9 @@ const PROOF = [
 
 export function Hero() {
   return (
-    <div className="relative overflow-hidden">
-      <div className="pointer-events-none absolute -left-40 -top-56 h-[560px] w-[560px] rounded-full bg-violet-600/20 blur-[120px]" />
-      <div className="pointer-events-none absolute -right-32 top-24 h-[420px] w-[420px] rounded-full bg-fuchsia-500/10 blur-[110px]" />
+    <div className="grain relative overflow-hidden">
+      <div className="pointer-events-none absolute -left-40 -top-56 h-[520px] w-[520px] rounded-full bg-violet-600/20 blur-[100px]" />
+      <div className="pointer-events-none absolute -right-32 top-24 h-[380px] w-[380px] rounded-full bg-fuchsia-500/10 blur-[100px]" />
       <div className="grid-bg pointer-events-none absolute inset-0 opacity-[0.35]" />
 
       <div className="relative mx-auto max-w-6xl px-5 pt-32 pb-16 sm:pt-40 sm:pb-20">
@@ -34,11 +34,8 @@ export function Hero() {
               I build and run production game servers, write commercial-grade Minecraft plugins, and ship
               full-stack web products — for people paying for the result, not the process.
             </p>
-            <div className="anim-rise mt-10 flex flex-wrap items-center gap-4" style={{ animationDelay: '200ms' }}>
-              <Link
-                to="/projects"
-                className="group inline-flex items-center gap-2.5 bg-white px-6 py-3 text-sm font-medium text-stone-900 transition-all duration-300 hover:bg-violet-300 hover:shadow-[0_0_40px_-8px_rgba(167,139,250,0.6)]"
-              >
+            <div className="anim-rise mt-10 flex flex-wrap items-center gap-3" style={{ animationDelay: '200ms' }}>
+              <Link to="/projects" className="btn btn-primary group">
                 View the work
                 <ArrowRightIcon size={15} className="transition-transform group-hover:translate-x-1" />
               </Link>
@@ -48,9 +45,10 @@ export function Hero() {
                   e.preventDefault();
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="link inline-flex items-center gap-2.5 px-1 py-3 text-sm font-medium text-stone-300 transition-colors hover:text-white"
+                className="btn btn-ghost group"
               >
                 Hire me
+                <ArrowUpRightIcon size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
           </div>
@@ -153,7 +151,7 @@ function Work({ onPick }: { onPick: (p: Project) => void }) {
 
         <Link
           to="/projects"
-          className="group mt-12 inline-flex items-center gap-2.5 text-sm font-medium text-stone-300 transition-colors hover:text-white"
+          className="btn btn-ghost group mt-12"
         >
           All {PROJECTS.length} projects
           <ArrowRightIcon size={15} className="transition-transform group-hover:translate-x-1" />

@@ -38,6 +38,26 @@ body {
   color: #fff;
 }
 
+/* global smoothness — every interactive element eases, nothing snaps */
+a,
+button,
+input,
+textarea,
+select {
+  transition:
+    color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease,
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* promote to a layer only while animating — 18 permanent layers would cost more than it saves */
+.surface:hover {
+  will-change: transform;
+}
+
 .font-display {
   font-family: 'Instrument Serif', Georgia, serif;
   letter-spacing: -0.01em;
@@ -73,6 +93,86 @@ body {
   opacity: 0.045;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border-radius: 9999px;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.btn:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.8);
+  outline-offset: 3px;
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #ffffff 0%, #e7e2ff 100%);
+  color: #14121c;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 12px 32px -14px rgba(167, 139, 250, 0.9);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #c4b5fd 100%);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 18px 42px -14px rgba(167, 139, 250, 1);
+}
+
+.btn-violet {
+  background: linear-gradient(180deg, #b26bff 0%, #7c22d3 100%);
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 12px 30px -14px rgba(168, 85, 247, 0.9);
+}
+
+.btn-violet:hover {
+  background: linear-gradient(180deg, #c084fc 0%, #9333ea 100%);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 18px 40px -14px rgba(168, 85, 247, 1);
+}
+
+.btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.02);
+  color: #d6d3d1;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(167, 139, 250, 0.5);
+  background: rgba(168, 85, 247, 0.1);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 0.55rem 1.05rem;
+  font-size: 0.8125rem;
 }
 
 /* card surface: real depth, not a flat rectangle */
