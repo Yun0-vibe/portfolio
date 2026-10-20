@@ -27,13 +27,13 @@ export function BootLoader({ done }: { done: () => void }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#070613] transition-all duration-500 ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0a0a0b] transition-all duration-500 ${
         leaving ? '-translate-y-3 opacity-0' : 'opacity-100'
       }`}
     >
-      <img src="/logo.svg" alt="" className="h-16 w-16 rounded-2xl border border-purple-500/30" />
+      <img src="/logo.svg" alt="" className="h-16 w-16 border border-white/15" />
       <p className="mt-7 font-display text-3xl italic text-white">
-        Yuno<span className="text-purple-400">.</span>
+        Yuno<span className="text-stone-600">.</span>
       </p>
       <div className="mt-6 h-16 text-xs text-stone-600">
         {LINES.slice(0, shown).map((l) => (
@@ -43,7 +43,7 @@ export function BootLoader({ done }: { done: () => void }) {
         ))}
       </div>
       <div className="mt-3 h-px w-48 overflow-hidden bg-white/10">
-        <div className="boot-bar h-full bg-purple-400" />
+        <div className="boot-bar h-full bg-white/70" />
       </div>
     </div>
   );

@@ -267,29 +267,19 @@ export const JOURNEY = [
 
 export const ROLES = [
   {
-    title: 'Manager, YetiMC',
-    org: 'YetiMC',
-    text: 'Running the community server end to end — player experience, staff structure, and the plugin suite that powers it.',
-  },
-  {
-    title: 'CEO, StrenoxCloud',
-    org: 'StrenoxCloud',
-    text: 'A game-hosting platform built from scratch: custom panel, node infrastructure, billing and 461 passing backend tests.',
-  },
-  {
     title: 'Paid Minecraft Server Developer',
     org: 'Server Engineering',
-    text: 'Hired to build and run production servers — Paper plugins, performance work, uptime and player-facing systems.',
+    text: 'Production servers run properly — Paper and Spigot infrastructure that survives real player load, plugin suites tuned for uptime, and the tooling around it: economy, jobs, quests, moderation and live status. I have run live communities and built the systems their players actually feel.',
   },
   {
     title: 'Paid Minecraft Plugin Developer',
     org: 'Plugin Engineering',
-    text: 'Commissioned plugin work: economy, auctions, enchants, farming regions — data-driven, tested, documented.',
+    text: 'Commissioned plugins, written to be read and maintained long after handover. Data-driven enchantment systems, economies that move with supply and demand, tiered auction houses, region farming — each one tested, documented and handed over clean.',
   },
   {
     title: 'Full-Stack Web Developer',
     org: 'Web Engineering',
-    text: 'Web products end to end — React and Next.js front ends, Node, FastAPI and Go back ends, Postgres and Prisma.',
+    text: 'Whole products, front to back. React and Next.js interfaces, Node, FastAPI and Go services, Postgres and Prisma for data, and serverless APIs that actually deliver mail. Deployed on Vercel and monitored after launch.',
   },
 ];
 

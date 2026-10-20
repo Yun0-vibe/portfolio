@@ -25,23 +25,23 @@ export function ProjectFilters({ onPick }: { onPick: (p: Project) => void }) {
 
   return (
     <div>
-      <div className="mt-8 flex flex-col gap-3 md:flex-row md:items-center">
-        <label className="flex flex-1 items-center gap-3 border-b border-white/15 pb-3 text-sm">
-          <SearchIcon size={15} className="shrink-0 text-stone-600" />
+      <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <label className="flex flex-1 items-center gap-3 border-b border-white/15 pb-3 text-sm md:max-w-sm">
+          <SearchIcon size={15} className="shrink-0 text-stone-700" />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Search projects, stacks, ideas…"
-            className="w-full bg-transparent text-stone-200 outline-none placeholder:text-stone-600"
+            placeholder="Search projects…"
+            className="w-full bg-transparent text-stone-200 outline-none placeholder:text-stone-700"
           />
         </label>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-5">
           {['All', 'Ongoing', 'Finished'].map((s) => (
             <button
               key={s}
               onClick={() => setStatus(s)}
-              className={`pb-3 text-sm transition-colors ${
-                status === s ? 'text-purple-300' : 'text-stone-600 hover:text-stone-300'
+              className={`label transition-colors ${
+                status === s ? 'text-white' : 'hover:text-stone-300'
               }`}
             >
               {s}
@@ -50,7 +50,7 @@ export function ProjectFilters({ onPick }: { onPick: (p: Project) => void }) {
         </div>
       </div>
 
-      <div className="no-scrollbar mt-6 flex gap-5 overflow-x-auto pb-1">
+      <div className="no-scrollbar mt-7 flex gap-6 overflow-x-auto pb-1">
         {FILTERS.map((f) => (
           <button
             key={f}
@@ -58,8 +58,8 @@ export function ProjectFilters({ onPick }: { onPick: (p: Project) => void }) {
               setCat(f);
               setParams(f === 'All' ? {} : { cat: f });
             }}
-            className={`whitespace-nowrap pb-1 text-sm transition-colors ${
-              cat === f ? 'text-purple-300' : 'text-stone-600 hover:text-stone-300'
+            className={`label whitespace-nowrap transition-colors ${
+              cat === f ? 'text-white' : 'hover:text-stone-300'
             }`}
           >
             {f}
@@ -67,37 +67,15 @@ export function ProjectFilters({ onPick }: { onPick: (p: Project) => void }) {
         ))}
       </div>
 
-      <p className="mt-4 font-mono text-xs text-stone-700">
-        {list.length} / {PROJECTS.length} projects
+      <p className="mt-4 font-meta text-[11px] text-stone-700">
+        {list.length} / {PROJECTS.length}
       </p>
 
-      <div className="mt-8 divide-y divide-white/10 border-y border-white/10">
+      <div className="mt-10 grid gap-px bg-white/10 sm:grid-cols-2">
         {list.map((p, i) => (
-          <button
-            key={p.slug}
-            onClick={() => onPick(p)}
-            className={`group flex w-full items-center gap-5 py-6 text-left transition-colors hover:bg-white/[0.02] ${
-              highlight && highlight !== p.slug ? 'opacity-40' : ''
-            }`}
-          >
-            <span className="font-mono text-xs text-stone-700">{String(i + 1).padStart(2, '0')}</span>
-            <span className="min-w-0 flex-1">
-              <span className="block text-xl font-semibold tracking-tight text-white transition-colors group-hover:text-purple-300">
-                {p.title}
-              </span>
-              <span className="mt-1 block text-sm text-stone-500">{p.tagline}</span>
-            </span>
-            <span className="hidden shrink-0 font-mono text-xs text-stone-600 sm:block">{p.category}</span>
-            <span
-              className={`hidden shrink-0 font-mono text-xs lg:block ${
-                p.status === 'Ongoing' ? 'text-purple-400/90' : 'text-stone-600'
-              }`}
-            >
-              {p.status}
-            </span>
-            <span className="hidden shrink-0 font-mono text-xs text-stone-700 xl:block">{p.year}</span>
-            <ArrowUpRightIcon size={16} className="shrink-0 text-stone-700 transition-all group-hover:translate-x-0.5 group-hover:text-purple-300" />
-          </button>
+          <div key={p.slug} className={highlight && highlight !== p.slug ? 'opacity-40' : ''}>
+            <ProjectCard p={p} index={i + 1} onOpen={() => onPick(p)} />
+          </div>
         ))}
       </div>
       {list.length === 0 && (
@@ -109,66 +87,29 @@ export function ProjectFilters({ onPick }: { onPick: (p: Project) => void }) {
   );
 }
 
-export function SelectedWork({ onPick }: { onPick: (p: Project) => void }) {
-  const [hero, ...rest] = PROJECTS.slice(0, 4);
+export function ProjectCard({ p, index, onOpen }: { p: Project; index: number; onOpen: () => void }) {
   return (
-    <div>
-      {/* flagship */}
-      <button onClick={() => onPick(hero)} className="group block w-full border-b border-white/10 pb-12 text-left">
-        <div className="flex items-baseline gap-4">
-          <span className="font-mono text-xs text-stone-600">01</span>
-          <span className="text-[11px] uppercase tracking-[0.25em] text-purple-400/90">Flagship</span>
-        </div>
-        <div className="mt-5 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <h3 className="font-display text-4xl italic leading-[1.05] text-white transition-colors group-hover:text-purple-300 md:text-6xl">
-            {hero.title}
-          </h3>
-          <span className="flex shrink-0 items-center gap-2 text-sm text-stone-500 transition-colors group-hover:text-purple-300">
-            View case file
-            <ArrowRightIcon size={15} className="transition-transform group-hover:translate-x-1" />
-          </span>
-        </div>
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-stone-400">{hero.description}</p>
-        <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-          {hero.stack.map((s) => (
-            <span key={s} className="font-mono text-xs text-stone-500">
-              {s}
-            </span>
-          ))}
-        </div>
-      </button>
-
-      {/* index rows */}
-      <div className="divide-y divide-white/10">
-        {rest.map((p, i) => (
-          <button
-            key={p.slug}
-            onClick={() => onPick(p)}
-            className="group flex w-full items-center gap-5 py-7 text-left transition-colors hover:bg-white/[0.02]"
-          >
-            <span className="font-mono text-xs text-stone-700">{String(i + 2).padStart(2, '0')}</span>
-            <span className="min-w-0 flex-1">
-              <span className="block text-xl font-semibold tracking-tight text-white transition-colors group-hover:text-purple-300 md:text-2xl">
-                {p.title}
-              </span>
-              <span className="mt-1 block text-sm text-stone-500">{p.tagline}</span>
-            </span>
-            <span className="hidden shrink-0 font-mono text-xs text-stone-600 md:block">{p.category}</span>
-            <span className="hidden shrink-0 font-mono text-xs text-stone-600 lg:block">{p.year}</span>
-            <ArrowUpRightIcon size={16} className="shrink-0 text-stone-700 transition-all group-hover:translate-x-0.5 group-hover:text-purple-300" />
-          </button>
-        ))}
+    <button
+      onClick={onOpen}
+      className="group flex h-full flex-col border border-white/10 bg-white/[0.015] p-6 text-left transition-colors duration-200 hover:border-white/25 hover:bg-white/[0.04] md:p-7"
+    >
+      <div className="flex items-center gap-4">
+        <span className="font-meta text-[11px] text-stone-700">{String(index).padStart(2, '0')}</span>
+        <span className="font-meta text-[10px] uppercase tracking-[0.18em] text-stone-600">{p.category}</span>
+        <span className="ml-auto font-meta text-[10px] uppercase tracking-[0.18em] text-stone-700">{p.status}</span>
       </div>
 
-      <Link
-        to="/projects"
-        className="group mt-10 inline-flex items-center gap-2.5 border-b border-white/20 pb-1 text-sm font-semibold text-stone-200 transition-colors hover:border-purple-400 hover:text-purple-300"
-      >
-        View the full archive
-        <span className="font-mono text-xs text-stone-500">{PROJECTS.length} projects</span>
-        <ArrowRightIcon size={15} className="transition-transform group-hover:translate-x-1" />
-      </Link>
-    </div>
+      <h3 className="mt-7 text-xl font-medium leading-tight tracking-[-0.02em] text-white transition-colors group-hover:text-stone-300 md:text-[1.4rem]">
+        {p.title}
+      </h3>
+      <p className="mt-2 text-sm text-stone-500">{p.tagline}</p>
+      <p className="mt-5 line-clamp-3 text-[13.5px] leading-relaxed text-stone-500">{p.description}</p>
+
+      <div className="mt-auto flex items-end justify-between gap-4 pt-8">
+        <span className="font-meta text-[11px] text-stone-600">{p.stack.join('  ·  ')}</span>
+        <ArrowUpRightIcon size={15} className="shrink-0 text-stone-700 transition-all group-hover:translate-x-0.5 group-hover:text-white" />
+      </div>
+    </button>
   );
 }
 
@@ -189,43 +130,37 @@ export function ProjectModal({ p, onClose }: { p: Project | null; onClose: () =>
     <div className="fixed inset-0 z-50 bg-black/70" onClick={onClose}>
       <div className="flex h-full items-center justify-center p-4 sm:p-6">
       <div
-        className="anim-fade max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/10 bg-[#0a0813] p-6 sm:p-9"
+        className="anim-fade max-h-[85vh] w-full max-w-2xl overflow-y-auto border border-white/10 bg-[#101012] p-6 sm:p-10"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center gap-3">
-          <span className="text-[11px] uppercase tracking-[0.25em] text-purple-400/90">
+        <div className="flex items-center gap-4">
+          <span className="font-meta text-[10px] uppercase tracking-[0.18em] text-stone-600">
             {p.category} · {p.year}
           </span>
-          <button onClick={onClose} className="ml-auto text-xs text-stone-500 transition-colors hover:text-white">
+          <button onClick={onClose} className="ml-auto text-xs text-stone-600 transition-colors hover:text-white">
             Close ✕
           </button>
         </div>
-        <h2 className="font-display mt-5 text-4xl italic leading-tight text-white md:text-5xl">{p.title}</h2>
-        <p className="mt-2 text-sm text-stone-500">{p.tagline}</p>
-        <p className="mt-7 leading-relaxed text-stone-300">{p.description}</p>
+        <h2 className="font-display mt-6 text-4xl italic leading-tight text-white md:text-5xl">{p.title}</h2>
+        <p className="mt-3 text-sm text-stone-500">{p.tagline}</p>
+        <p className="mt-7 text-[15px] leading-relaxed text-stone-300">{p.description}</p>
 
         <div className="mt-9 border-t border-white/10 pt-6">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-stone-600">Stack</p>
-          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
-            {p.stack.map((s) => (
-              <span key={s} className="font-mono text-xs text-stone-400">
-                {s}
-              </span>
-            ))}
-          </div>
+          <p className="label">Stack</p>
+          <p className="mt-3 font-meta text-xs text-stone-400">{p.stack.join('  ·  ')}</p>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
-          <span className="text-xs uppercase tracking-[0.2em] text-stone-600">
-            Status — <span className="text-purple-300">{p.status}</span>
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-5 border-t border-white/10 pt-6">
+          <span className="label">
+            Status — <span className="text-stone-300">{p.status}</span>
           </span>
-          <span className="flex flex-wrap items-center gap-5">
+          <span className="flex flex-wrap items-center gap-6">
             {p.links?.map((l) => (
-              <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="text-sm font-semibold text-white underline decoration-purple-400/60 underline-offset-4 transition-colors hover:text-purple-300">
+              <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="link text-sm font-medium text-white">
                 {l.label} ↗
               </a>
             ))}
-            <a href={`mailto:contact@vibeyuno.me?subject=${encodeURIComponent(`Enquiry — ${p.title}`)}`} className="text-sm font-semibold text-white underline decoration-purple-400/60 underline-offset-4 transition-colors hover:text-purple-300">
+            <a href={`mailto:contact@vibeyuno.me?subject=${encodeURIComponent(`Enquiry — ${p.title}`)}`} className="link text-sm font-medium text-white">
               Ask about this build
             </a>
           </span>
